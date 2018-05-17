@@ -1,0 +1,3 @@
+This folder contains a basic set-up for the project. It contains the scripts needed to connect with a spirometer (BluetoothLE AIRNEXT, USB Kueffner or simulated with a gamepad), and an example scene where flow values of the simulated (Gamepad) spirometer are shown in a text field.
+
+The simulated spirometer works by pressing down the trigger buttons located on an Xbox 360 controller's shoulders. To change the device type to simulated, Kueffner or AIRNEXT, use the DeviceManager's SetDeviceType function.
