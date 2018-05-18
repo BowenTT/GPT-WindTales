@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Structs;
 
 namespace Games
 {
@@ -18,7 +17,7 @@ namespace Games
 		
 		}
 
-		abstract public StatChange Play();
+		abstract public void Play();
 	}
 }
 

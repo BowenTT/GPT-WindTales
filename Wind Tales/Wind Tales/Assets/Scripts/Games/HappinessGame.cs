@@ -1,16 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Structs;
 
 namespace Games
 {
 	public class HappinessGame : MiniGames
 	{
 
-		public override StatChange Play()
+		public override void Play()
 		{
-			return new StatChange(0, 0, 0);
+
 		}
 	}
 }
