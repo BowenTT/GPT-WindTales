@@ -257,7 +257,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 31c70dddd2dab4b48b4902a8a810fdf9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8a63b21d97272746b4b7f774ea4b34c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -265,7 +265,7 @@ SpriteRenderer:
   m_Size: {x: 0.85, y: 1.43}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!1 &569336007
 GameObject:
@@ -385,7 +385,6 @@ MonoBehaviour:
   startingPosition: {fileID: 1983794722}
   groundLevel: {fileID: 569336008}
   upperLevel: {fileID: 1040110406}
-  currentState: 0
 --- !u!4 &1244586350
 Transform:
   m_ObjectHideFlags: 0
@@ -438,7 +437,7 @@ GameObject:
   - component: {fileID: 1575799528}
   - component: {fileID: 1575799529}
   m_Layer: 0
-  m_Name: ImprovedBackground
+  m_Name: BackgroundSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -491,7 +490,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ae7b0712bb7b53f448e7d76de2e7c1a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 82c61af06c184964e9e37bd7d424191d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -499,7 +498,7 @@ SpriteRenderer:
   m_Size: {x: 19.2, y: 100}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!1 &1983794721
 GameObject:

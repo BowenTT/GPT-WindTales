@@ -33,9 +33,9 @@ namespace Games
 			UpdateGame();
 		}
 
-		public override void Play()
+		public override StatChange Play()
 		{
-			
+			return new StatChange(0,0,0);
 		}
 
 		private void UpdateState()
