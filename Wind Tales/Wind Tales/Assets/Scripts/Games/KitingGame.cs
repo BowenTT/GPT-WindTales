@@ -28,9 +28,9 @@ namespace Games
 	
 		void Update ()
 		{
-			//float test = ;
-			UpdateState();
-			UpdateGame();
+			float input = Input.GetAxis("Player_SimulateBreathing");
+			UpdateState(input);
+			UpdateGame(input);
 		}
 
 		public override StatChange Play()
@@ -38,7 +38,7 @@ namespace Games
 			return new StatChange(0,0,0);
 		}
 
-		private void UpdateState()
+		private void UpdateState(float input)
 		{
 			switch(currentState)
 			{
@@ -47,14 +47,14 @@ namespace Games
 				break;
 
 				case kiteGameState.starting:
-					if (Input.GetButton("Vertical"))
+					if (input > 0)
 					{
 						currentState = kiteGameState.playing;
 					}
 				break;
 
 				case kiteGameState.playing:
-					if (!Input.GetButton("Vertical") || background.transform.position.y > groundLevel.position.y || background.transform.position.y < upperLevel.position.y)
+					if (input <= 0 || background.transform.position.y > groundLevel.position.y || background.transform.position.y < upperLevel.position.y)
 					{
 						currentState = kiteGameState.finished;
 					}
@@ -62,7 +62,7 @@ namespace Games
 			}
 		}
 
-		private void UpdateGame()
+		private void UpdateGame(float input)
 		{
 			switch(currentState)
 			{
@@ -73,7 +73,7 @@ namespace Games
 					//effects of gravity
 					background.transform.position += new Vector3(0, gravity, 0);
 					//effect of blowing
-					background.transform.position -= new Vector3(0, airflow, 0);
+					background.transform.position -= new Vector3(0, airflow*input, 0);
 				break;
 					case kiteGameState.finished:
 					if (background.transform.position.y < groundLevel.position.y)
