@@ -13,7 +13,7 @@ using System;
 public class USBSpiroController : SpiroController
 {
 
-    private string portName = "COM3";
+    private string portName = "COM17";
     private SerialPort port;
     private Thread myThread;
 
@@ -39,7 +39,7 @@ public class USBSpiroController : SpiroController
             return;
         }
         
-        port = new SerialPort("\\\\.\\" + portName);
+        port = new SerialPort("" + portName);
         port.Encoding = Encoding.Default;
         port.BaudRate = 9600;
         port.ReadBufferSize = 10000;
