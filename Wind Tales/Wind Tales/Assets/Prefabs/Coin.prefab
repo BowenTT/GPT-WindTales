@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0c01a1dc296654dbe6d42d7af99f38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vacuumStrength: 5
+  vacuumStrength: 0.39
   distanceStrength: 100
   vacuumDirection: 1
   loseVacuumEffect: 0
@@ -126,7 +126,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 175
+  m_Radius: 1000
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!222 &222355556740734062
 CanvasRenderer:

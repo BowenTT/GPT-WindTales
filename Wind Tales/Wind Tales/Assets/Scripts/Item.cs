@@ -6,21 +6,11 @@ public class Item : MonoBehaviour {
 
     public Vector2 direction;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
-
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.tag == "Player")
+        if (other.tag == "Player")
         {
-            collision.GetComponent<Animal>().targetPosition = direction;
+            other.GetComponent<Animal>().targetPosition = direction;
         }
     }
 }
