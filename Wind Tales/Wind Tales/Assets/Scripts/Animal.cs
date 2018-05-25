@@ -20,4 +20,12 @@ public class Animal : MonoBehaviour {
             trans.position = targetPosition;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Coin")
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }

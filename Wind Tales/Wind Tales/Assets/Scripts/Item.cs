@@ -18,11 +18,9 @@ public class Item : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Been here");
         if (collision.tag == "Player")
         {
             collision.GetComponent<Animal>().targetPosition = direction;
-            Debug.Log("Been here");
         }
     }
 }
