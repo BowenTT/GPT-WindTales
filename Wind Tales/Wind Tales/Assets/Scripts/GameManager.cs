@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour {
 
     public GameObject parent;
 
+    public Vector3 center;
+    public Vector3 size;
+
     private Rigidbody coinRigidBody;
 
 	void Start () {
@@ -16,11 +19,22 @@ public class GameManager : MonoBehaviour {
     {
 		if (Input.GetMouseButtonDown(0))
         {
-            Vector2 mousePosition = Input.mousePosition;
-
-            Vector2 spawnPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-            Instantiate(coin, mousePosition, Quaternion.identity).transform.parent = parent.transform;
+            SpawnCoin();   
         }
 	}
+
+    void SpawnCoin()
+    {
+        Vector2 mousePosition = Input.mousePosition;
+
+        Vector2 spawnPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        Instantiate(coin, mousePosition, Quaternion.identity, parent.transform);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawCube(center, size);
+    }
 }
