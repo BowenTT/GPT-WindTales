@@ -11,22 +11,47 @@ public class CleanPet : MonoBehaviour
     public Sprite filth2;
     public Sprite filth1;
     public Sprite clean;
+    public Sprite wetOverlay1;
+    public Sprite wetOverlay2;
+    public Sprite wetOverlay3;
+    public Image wetOverlay;
+    public float maxFlow;
 
     private int MaxFilth;
+    private int loop = 0;
     private GameObject currentPet;
     private Vector3 oldPosition;
+    private bool isDry = true;
+    private float cumalativeFlow;
 
     void Start()
     {
-        Debug.Log("set maxFilth");
         MaxFilth = filthyness;
         Debug.Log(MaxFilth);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void Update()
+    {
+        float input = Input.GetAxis("Player_SimulateBreathing");
+        DryPet(input);
+        Debug.Log(input);
+        if (isDry == false)
+        {
+            Debug.Log("start animation");
+            WetAnimation();
+        }
+        else
+        {
+            turnOffWetAnimation();
+        }
+
+    }
+
+        void OnCollisionEnter2D(Collision2D col)
     {
         Debug.Log("set current gameobject");
         currentPet = col.otherCollider.gameObject;
+        isDry = false;
     }
 
     void OnCollisionStay2D(Collision2D col)
@@ -75,4 +100,41 @@ public class CleanPet : MonoBehaviour
             filthupdate.sprite = filth3;
     }
 
+    void DryPet(float input)
+    {
+        if (input >= maxFlow || cumalativeFlow >= maxFlow)
+        {
+            isDry = true;
+        }
+        cumalativeFlow += input;
+    }
+
+    void turnOffWetAnimation()
+    {
+        wetOverlay.enabled = false;
+        cumalativeFlow = 0;
+    }
+
+    void WetAnimation()
+    {
+        wetOverlay.enabled = true;
+        if (loop == 0)
+        {
+            wetOverlay.sprite = wetOverlay1;
+        }
+        if (loop == 50)
+        {
+            wetOverlay.sprite = wetOverlay2;
+        }
+        if (loop == 100)
+        {
+            wetOverlay.sprite = wetOverlay3;
+        }
+        loop++;
+        
+        if (loop > 150)
+        {
+            loop = 0;
+        }
+    }
 }
