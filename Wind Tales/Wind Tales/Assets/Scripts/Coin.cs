@@ -12,10 +12,31 @@ public class Coin : MonoBehaviour {
     private Rigidbody coinRigidbody;
     private bool inRange;
 
+    private bool isSelected = false;
+
     void Awake()
     {
         trans = transform;
         coinRigidbody = trans.GetComponent<Rigidbody>();
+    }
+
+    void Update()
+    {
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit, 100f))
+        {
+            if (hit.transform)
+            {
+                Debug.Log(hit.transform.gameObject);
+            }
+        }
+
+        if (isSelected)
+        {
+            this.transform.localScale += new Vector3(2f, 2f);
+        }
     }
 
     void FixedUpdate()
