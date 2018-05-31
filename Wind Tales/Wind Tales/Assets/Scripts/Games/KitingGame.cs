@@ -18,12 +18,15 @@ namespace Games
 		public Transform startingPosition;
 		public Transform groundLevel;
 		public Transform upperLevel;
+		public GameObject victory;
 
 		private kiteGameState currentState = kiteGameState.starting;
+		private float points = 0;
 
 		void Start ()
 		{
 			background.transform.position = startingPosition.position;
+			victory.SetActive(false);
 		}
 	
 		void Update ()
@@ -31,6 +34,7 @@ namespace Games
 			float input = Input.GetAxis("Player_SimulateBreathing");
 			UpdateState(input);
 			UpdateGame(input);
+			points += input;
 		}
 
 		public override StatChange Play()
@@ -57,6 +61,8 @@ namespace Games
 					if (input <= 0 || background.transform.position.y > groundLevel.position.y || background.transform.position.y < upperLevel.position.y)
 					{
 						currentState = kiteGameState.finished;
+						victory.SetActive(true);
+						gravity = gravity/10;
 					}
 				break;
 			}
