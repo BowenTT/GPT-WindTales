@@ -578,7 +578,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: a95f98dd8f7c93c4b910f0568613e593, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ff2683bfaf5f214b8c53fce84702544, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -629,6 +629,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filthyness: 400
+  filth3: {fileID: 21300000, guid: 3c9e258e87be0dd4d92aa377a0631eff, type: 3}
+  filth2: {fileID: 21300000, guid: 910613bb2e2cf3045bfb260673d9531a, type: 3}
+  filth1: {fileID: 21300000, guid: 33b6d797160eea74eb22d645d3e2dd64, type: 3}
+  clean: {fileID: 21300000, guid: a95f98dd8f7c93c4b910f0568613e593, type: 3}
 --- !u!50 &1255595814
 Rigidbody2D:
   serializedVersion: 4
