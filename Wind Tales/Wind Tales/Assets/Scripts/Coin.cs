@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Coin : MonoBehaviour {
 
@@ -24,18 +25,19 @@ public class Coin : MonoBehaviour {
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
         if (Physics.Raycast(ray, out hit, 100f))
         {
             if (hit.transform)
             {
-                Debug.Log(hit.transform.gameObject);
+                //Debug.Log(hit.transform.gameObject.transform.position);
+                Debug.Log("Hit! " + Time.time);
+                isSelected = true;
             }
         }
 
         if (isSelected)
         {
-            this.transform.localScale += new Vector3(2f, 2f);
+            //this.transform.localScale += new Vector3(2f, 2f);
         }
     }
 
@@ -49,6 +51,11 @@ public class Coin : MonoBehaviour {
 
             coinRigidbody.AddForce(vacuumDistanceStrength * (directionToVacuum * vacuumDirection), ForceMode.Force);
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        this.gameObject.GetComponent<Image>().color = Color.black;
     }
 
     void OnTriggerEnter(Collider other)
