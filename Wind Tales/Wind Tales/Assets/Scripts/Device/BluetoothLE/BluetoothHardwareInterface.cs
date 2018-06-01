@@ -1,7 +1,6 @@
-using UnityEngine;
 using System;
-using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class BluetoothLEHardwareInterface
 {
@@ -19,7 +18,7 @@ public class BluetoothLEHardwareInterface
 		CBCharacteristicPropertyIndicateEncryptionRequired = 0x200,
 	};
 
-	public  enum CBAttributePermissions
+	public enum CBAttributePermissions
 	{
 		CBAttributePermissionsReadable = 0x01,
 		CBAttributePermissionsWriteable = 0x02,
@@ -107,9 +106,9 @@ public class BluetoothLEHardwareInterface
 
 	private static BluetoothDeviceScript bluetoothDeviceScript;
 
-	public static void Log (string message)
+	public static void Log(string message)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE || UNITY_TVOS
 			_iOSBluetoothLELog (message);
@@ -120,7 +119,7 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static BluetoothDeviceScript Initialize (bool asCentral, bool asPeripheral, Action action, Action<string> errorAction)
+	public static BluetoothDeviceScript Initialize(bool asCentral, bool asPeripheral, Action action, Action<string> errorAction)
 	{
 		bluetoothDeviceScript = null;
 
@@ -137,12 +136,12 @@ public class BluetoothLEHardwareInterface
 			}
 		}
 
-		GameObject.DontDestroyOnLoad (bluetoothLEReceiver);
+		GameObject.DontDestroyOnLoad(bluetoothLEReceiver);
 
-		if (Application.isEditor)
+		if (UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
-				bluetoothDeviceScript.SendMessage ("OnBluetoothMessage", "Initialized");
+				bluetoothDeviceScript.SendMessage("OnBluetoothMessage", "Initialized");
 		}
 		else
 		{
@@ -162,16 +161,16 @@ public class BluetoothLEHardwareInterface
 
 		return bluetoothDeviceScript;
 	}
-	
-	public static void DeInitialize (Action action)
+
+	public static void DeInitialize(Action action)
 	{
 		if (bluetoothDeviceScript != null)
 			bluetoothDeviceScript.DeinitializedAction = action;
 
-		if (Application.isEditor)
+		if (UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
-				bluetoothDeviceScript.SendMessage ("OnBluetoothMessage", "DeInitialized");
+				bluetoothDeviceScript.SendMessage("OnBluetoothMessage", "DeInitialized");
 		}
 		else
 		{
@@ -184,16 +183,16 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void FinishDeInitialize ()
+	public static void FinishDeInitialize()
 	{
 		GameObject bluetoothLEReceiver = GameObject.Find("BluetoothLEReceiver");
 		if (bluetoothLEReceiver != null)
 			GameObject.Destroy(bluetoothLEReceiver);
 	}
 
-	public static void BluetoothEnable (bool enable)
+	public static void BluetoothEnable(bool enable)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE || UNITY_TVOS
 			//_iOSBluetoothLELog (message);
@@ -204,9 +203,9 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void PauseMessages (bool isPaused)
+	public static void PauseMessages(bool isPaused)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE || UNITY_TVOS
 			_iOSBluetoothLEPauseMessages (isPaused);
@@ -216,10 +215,10 @@ public class BluetoothLEHardwareInterface
 #endif
 		}
 	}
-	
-	public static void ScanForPeripheralsWithServices (string[] serviceUUIDs, Action<string, string> action, Action<string, string, int, byte[]> actionAdvertisingInfo = null, bool rssiOnly = false, bool clearPeripheralList = true, int recordType = 0xFF)
+
+	public static void ScanForPeripheralsWithServices(string[] serviceUUIDs, Action<string, string> action, Action<string, string, int, byte[]> actionAdvertisingInfo = null, bool rssiOnly = false, bool clearPeripheralList = true, int recordType = 0xFF)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 			{
@@ -227,7 +226,7 @@ public class BluetoothLEHardwareInterface
 				bluetoothDeviceScript.DiscoveredPeripheralWithAdvertisingInfoAction = actionAdvertisingInfo;
 
 				if (bluetoothDeviceScript.DiscoveredDeviceList != null)
-					bluetoothDeviceScript.DiscoveredDeviceList.Clear ();
+					bluetoothDeviceScript.DiscoveredDeviceList.Clear();
 			}
 
 			string serviceUUIDsString = null;
@@ -239,7 +238,7 @@ public class BluetoothLEHardwareInterface
 				foreach (string serviceUUID in serviceUUIDs)
 					serviceUUIDsString += serviceUUID + "|";
 
-				serviceUUIDsString = serviceUUIDsString.Substring (0, serviceUUIDsString.Length - 1);
+				serviceUUIDsString = serviceUUIDsString.Substring(0, serviceUUIDsString.Length - 1);
 			}
 
 #if UNITY_IPHONE || UNITY_TVOS
@@ -255,27 +254,27 @@ public class BluetoothLEHardwareInterface
 #endif
 		}
 	}
-	
-	public static void RetrieveListOfPeripheralsWithServices (string[] serviceUUIDs, Action<string, string> action)
+
+	public static void RetrieveListOfPeripheralsWithServices(string[] serviceUUIDs, Action<string, string> action)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 			{
 				bluetoothDeviceScript.RetrievedConnectedPeripheralAction = action;
-				
+
 				if (bluetoothDeviceScript.DiscoveredDeviceList != null)
-					bluetoothDeviceScript.DiscoveredDeviceList.Clear ();
+					bluetoothDeviceScript.DiscoveredDeviceList.Clear();
 			}
-			
+
 			string serviceUUIDsString = serviceUUIDs.Length > 0 ? "" : null;
-			
+
 			foreach (string serviceUUID in serviceUUIDs)
 				serviceUUIDsString += serviceUUID + "|";
-			
+
 			// strip the last delimeter
-			serviceUUIDsString = serviceUUIDsString.Substring (0, serviceUUIDsString.Length - 1);
-			
+			serviceUUIDsString = serviceUUIDsString.Substring(0, serviceUUIDsString.Length - 1);
+
 #if UNITY_IPHONE || UNITY_TVOS
 			_iOSBluetoothLERetrieveListOfPeripheralsWithServices (serviceUUIDsString);
 #elif UNITY_ANDROID
@@ -285,9 +284,9 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void StopScan ()
+	public static void StopScan()
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE || UNITY_TVOS
 			_iOSBluetoothLEStopScan ();
@@ -298,9 +297,10 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void DisconnectAll ()
+	public static void DisconnectAll()
 	{
-		if (!Application.isEditor) {
+		if (!UnityEngine.Application.isEditor)
+		{
 #if UNITY_IPHONE || UNITY_TVOS
 			_iOSBluetoothLEDisconnectAll ();
 #elif UNITY_ANDROID
@@ -310,9 +310,9 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void ConnectToPeripheral (string name, Action<string> connectAction, Action<string, string> serviceAction, Action<string, string, string> characteristicAction, Action<string> disconnectAction = null)
+	public static void ConnectToPeripheral(string name, Action<string> connectAction, Action<string, string> serviceAction, Action<string, string, string> characteristicAction, Action<string> disconnectAction = null)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 			{
@@ -330,14 +330,14 @@ public class BluetoothLEHardwareInterface
 #endif
 		}
 	}
-	
-	public static void DisconnectPeripheral (string name, Action<string> action)
+
+	public static void DisconnectPeripheral(string name, Action<string> action)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 				bluetoothDeviceScript.DisconnectedPeripheralAction = action;
-			
+
 #if UNITY_IPHONE || UNITY_TVOS
 			_iOSBluetoothLEDisconnectPeripheral (name);
 #elif UNITY_ANDROID
@@ -347,13 +347,13 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void ReadCharacteristic (string name, string service, string characteristic, Action<string, byte[]> action)
+	public static void ReadCharacteristic(string name, string service, string characteristic, Action<string, byte[]> action)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 			{
-				if (!bluetoothDeviceScript.DidUpdateCharacteristicValueAction.ContainsKey (name))
+				if (!bluetoothDeviceScript.DidUpdateCharacteristicValueAction.ContainsKey(name))
 					bluetoothDeviceScript.DidUpdateCharacteristicValueAction[name] = new Dictionary<string, Action<string, byte[]>>();
 
 #if UNITY_IPHONE || UNITY_TVOS
@@ -371,14 +371,14 @@ public class BluetoothLEHardwareInterface
 #endif
 		}
 	}
-	
-	public static void WriteCharacteristic (string name, string service, string characteristic, byte[] data, int length, bool withResponse, Action<string> action)
+
+	public static void WriteCharacteristic(string name, string service, string characteristic, byte[] data, int length, bool withResponse, Action<string> action)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 				bluetoothDeviceScript.DidWriteCharacteristicAction = action;
-			
+
 #if UNITY_IPHONE || UNITY_TVOS
 			_iOSBluetoothLEWriteCharacteristic (name, service, characteristic, data, length, withResponse);
 #elif UNITY_ANDROID
@@ -387,17 +387,17 @@ public class BluetoothLEHardwareInterface
 #endif
 		}
 	}
-	
-	public static void SubscribeCharacteristic (string name, string service, string characteristic, Action<string> notificationAction, Action<string, byte[]> action)
+
+	public static void SubscribeCharacteristic(string name, string service, string characteristic, Action<string> notificationAction, Action<string, byte[]> action)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 			{
-				name = name.ToUpper ();
-				service = service.ToUpper ();
-				characteristic = characteristic.ToUpper ();
-				
+				name = name.ToUpper();
+				service = service.ToUpper();
+				characteristic = characteristic.ToUpper();
+
 #if UNITY_IPHONE || UNITY_TVOS
 				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction.ContainsKey (name))
 					bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction [name] = new Dictionary<string, Action<string>> ();
@@ -425,16 +425,16 @@ public class BluetoothLEHardwareInterface
 #endif
 		}
 	}
-	
-	public static void SubscribeCharacteristicWithDeviceAddress (string name, string service, string characteristic, Action<string, string> notificationAction, Action<string, string, byte[]> action)
+
+	public static void SubscribeCharacteristicWithDeviceAddress(string name, string service, string characteristic, Action<string, string> notificationAction, Action<string, string, byte[]> action)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 			{
-				name = name.ToUpper ();
-				service = service.ToUpper ();
-				characteristic = characteristic.ToUpper ();
+				name = name.ToUpper();
+				service = service.ToUpper();
+				characteristic = characteristic.ToUpper();
 
 #if UNITY_IPHONE || UNITY_TVOS
 				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction.ContainsKey (name))
@@ -454,7 +454,7 @@ public class BluetoothLEHardwareInterface
 				bluetoothDeviceScript.DidUpdateCharacteristicValueWithDeviceAddressAction[name][FullUUID (characteristic).ToLower ()] = action;
 #endif
 			}
-			
+
 #if UNITY_IPHONE || UNITY_TVOS
 			_iOSBluetoothLESubscribeCharacteristic (name, service, characteristic);
 #elif UNITY_ANDROID
@@ -464,16 +464,16 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void UnSubscribeCharacteristic (string name, string service, string characteristic, Action<string> action)
+	public static void UnSubscribeCharacteristic(string name, string service, string characteristic, Action<string> action)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 			{
-				name = name.ToUpper ();
-				service = service.ToUpper ();
-				characteristic = characteristic.ToUpper ();
-				
+				name = name.ToUpper();
+				service = service.ToUpper();
+				characteristic = characteristic.ToUpper();
+
 #if UNITY_IPHONE || UNITY_TVOS
 				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction.ContainsKey (name))
 					bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction[name] = new Dictionary<string, Action<string, string>>();
@@ -502,9 +502,9 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void PeripheralName (string newName)
+	public static void PeripheralName(string newName)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE
 			_iOSBluetoothLEPeripheralName (newName);
@@ -512,9 +512,9 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void CreateService (string uuid, bool primary, Action<string> action)
+	public static void CreateService(string uuid, bool primary, Action<string> action)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 				bluetoothDeviceScript.ServiceAddedAction = action;
@@ -524,10 +524,10 @@ public class BluetoothLEHardwareInterface
 #endif
 		}
 	}
-	
-	public static void RemoveService (string uuid)
+
+	public static void RemoveService(string uuid)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE
 			_iOSBluetoothLERemoveService (uuid);
@@ -535,9 +535,9 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void RemoveServices ()
+	public static void RemoveServices()
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE
 			_iOSBluetoothLERemoveServices ();
@@ -545,9 +545,9 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void CreateCharacteristic (string uuid, CBCharacteristicProperties properties, CBAttributePermissions permissions, byte[] data, int length, Action<string, byte[]> action)
+	public static void CreateCharacteristic(string uuid, CBCharacteristicProperties properties, CBAttributePermissions permissions, byte[] data, int length, Action<string, byte[]> action)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 				bluetoothDeviceScript.PeripheralReceivedWriteDataAction = action;
@@ -558,9 +558,9 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void RemoveCharacteristic (string uuid)
+	public static void RemoveCharacteristic(string uuid)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 				bluetoothDeviceScript.PeripheralReceivedWriteDataAction = null;
@@ -571,19 +571,19 @@ public class BluetoothLEHardwareInterface
 		}
 	}
 
-	public static void RemoveCharacteristics ()
+	public static void RemoveCharacteristics()
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE
 			_iOSBluetoothLERemoveCharacteristics ();
 #endif
 		}
 	}
-	
-	public static void StartAdvertising (Action action)
+
+	public static void StartAdvertising(Action action)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 				bluetoothDeviceScript.StartedAdvertisingAction = action;
@@ -593,10 +593,10 @@ public class BluetoothLEHardwareInterface
 #endif
 		}
 	}
-	
-	public static void StopAdvertising (Action action)
+
+	public static void StopAdvertising(Action action)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 			if (bluetoothDeviceScript != null)
 				bluetoothDeviceScript.StoppedAdvertisingAction = action;
@@ -606,18 +606,18 @@ public class BluetoothLEHardwareInterface
 #endif
 		}
 	}
-	
-	public static void UpdateCharacteristicValue (string uuid, byte[] data, int length)
+
+	public static void UpdateCharacteristicValue(string uuid, byte[] data, int length)
 	{
-		if (!Application.isEditor)
+		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE
 			_iOSBluetoothLEUpdateCharacteristicValue (uuid, data, length);
 #endif
 		}
 	}
-	
-	public static string FullUUID (string uuid)
+
+	public static string FullUUID(string uuid)
 	{
 		if (uuid.Length == 4)
 			return "0000" + uuid + "-0000-1000-8000-00805f9b34fb";

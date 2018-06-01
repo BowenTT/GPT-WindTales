@@ -14,16 +14,21 @@ namespace Games
 	{
 		public float gravity;
 		public float airflow;
+		public float startingBoost;
 		public GameObject background;
-		public Transform startingPosition;
 		public Transform groundLevel;
 		public Transform upperLevel;
+		public GameObject victory;
+		public Transform cameraPosition;
+		public Transform kitePosition;
 
 		private kiteGameState currentState = kiteGameState.starting;
+		private float velocity = 0;
+		private float maxHeight;
 
 		void Start ()
 		{
-			background.transform.position = startingPosition.position;
+			victory.SetActive(false);
 		}
 	
 		void Update ()
@@ -31,6 +36,10 @@ namespace Games
 			float input = Input.GetAxis("Player_SimulateBreathing");
 			UpdateState(input);
 			UpdateGame(input);
+			if(kitePosition.position.y > maxHeight)
+			{
+				maxHeight = kitePosition.position.y;
+			}
 		}
 
 		public override StatChange Play()
@@ -40,6 +49,7 @@ namespace Games
 
 		private void UpdateState(float input)
 		{
+
 			switch(currentState)
 			{
 				default:
@@ -49,14 +59,20 @@ namespace Games
 				case kiteGameState.starting:
 					if (input > 0)
 					{
+						velocity = input*startingBoost;
+						Debug.Log("switched to Playing");
 						currentState = kiteGameState.playing;
 					}
 				break;
 
 				case kiteGameState.playing:
-					if (input <= 0 || background.transform.position.y > groundLevel.position.y || background.transform.position.y < upperLevel.position.y)
+					if (velocity <= 0 || kitePosition.position.y < groundLevel.position.y || kitePosition.position.y > upperLevel.position.y)
 					{
+						velocity = 0;
+						gravity = gravity/10;
+						Debug.Log("switched to Finished");
 						currentState = kiteGameState.finished;
+						victory.SetActive(true);
 					}
 				break;
 			}
@@ -71,15 +87,26 @@ namespace Games
 				break;
 					case kiteGameState.playing:
 					//effects of gravity
-					background.transform.position += new Vector3(0, gravity, 0);
+					//background.transform.position += new Vector3(0, gravity, 0);
 					//effect of blowing
-					background.transform.position -= new Vector3(0, airflow*input, 0);
+					//background.transform.position -= new Vector3(0, airflow*input, 0);
+					velocity -= gravity;
+					velocity += airflow*input;
+					kitePosition.position += new Vector3(0, velocity, 0);
+					cameraPosition.position += new Vector3(0, velocity, 0);
 				break;
 					case kiteGameState.finished:
-					if (background.transform.position.y < groundLevel.position.y)
+					if (kitePosition.position.y > groundLevel.position.y)
 					{
 						//effects of gravity
-						background.transform.position += new Vector3(0, gravity, 0);
+						velocity -= gravity;
+						kitePosition.position += new Vector3(0, velocity, 0);
+						cameraPosition.position += new Vector3(0, velocity, 0);
+					}
+					else
+					{
+						kitePosition.position = groundLevel.position;
+						cameraPosition.position = groundLevel.position;
 					}
 				break;
 			}
