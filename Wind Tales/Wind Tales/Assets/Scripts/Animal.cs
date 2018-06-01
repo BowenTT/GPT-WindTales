@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Animal : MonoBehaviour {
 
     public Vector2 targetPosition;
+    public int score;
+    public Text scoreText;
 
     private Transform trans;
 
@@ -23,9 +26,19 @@ public class Animal : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.tag == "CoinTrigger")
+        {
+            Destroy(other.gameObject);
+        }
+
         if (other.tag == "Coin")
         {
             Destroy(other.gameObject);
+            if (other.gameObject.GetComponent<Coin>().isSelected)
+            {
+                score++;
+                scoreText.text = score.ToString();
+            }
         }
     }
 }

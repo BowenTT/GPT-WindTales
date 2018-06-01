@@ -16,14 +16,14 @@ public class Spawner : MonoBehaviour {
 
 	void Start ()
     {
-        for (int i = 0; i < 10; i++)
-        {
-            Vector2 mousePosition = Input.mousePosition;
+        //for (int i = 0; i < 10; i++)
+        //{
+        //    Vector2 mousePosition = Input.mousePosition;
 
-            Vector2 spawnPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        //    Vector2 spawnPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
-            Instantiate(spawnItem, mousePosition, Quaternion.identity, spawnArea.transform);
-        }
+        //    Instantiate(spawnItem, mousePosition, Quaternion.identity, spawnArea.transform);
+        //}
     }
 	
 	void Update ()

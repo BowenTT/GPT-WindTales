@@ -11,39 +11,49 @@ public class Coin : MonoBehaviour {
     private Transform trans;
     private Transform vacuumTransform;
     private Rigidbody coinRigidbody;
-    private bool inRange;
+    private bool inRange = false;
 
-    private bool isSelected = false;
+    private float value;
+
+    public bool isSelected = false;
 
     void Awake()
     {
         trans = transform;
         coinRigidbody = trans.GetComponent<Rigidbody>();
+        coinRigidbody.AddForce(this.transform.forward * 10, ForceMode.Force);
     }
 
     void Update()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 100f))
-        {
-            if (hit.transform)
-            {
-                //Debug.Log(hit.transform.gameObject.transform.position);
-                Debug.Log("Hit! " + Time.time);
-                isSelected = true;
-            }
-        }
+        //RaycastHit hit;
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //if (Physics.Raycast(ray, out hit, 100f))
+        //{
+        //    if (hit.transform)
+        //    {
+        //        //Debug.Log(hit.transform.gameObject.transform.position);
+        //        Debug.Log("Hit! " + Time.time);
+        //        isSelected = true;
+        //    }
+        //}
+
+        //vacuumStrength += Input.GetAxis("Player_SimulateBreathing") / 5;
+
+        //value += Input.GetAxis("Player_SimulateBreathing");
+        //Debug.Log(value);
 
         if (isSelected)
         {
             //this.transform.localScale += new Vector3(2f, 2f);
+            //this.gameObject.GetComponent<Image>().color = Color.red;
+
         }
     }
 
     void FixedUpdate()
     {
-        if (inRange)
+        if (inRange && isSelected)
         {
             Vector2 directionToVacuum = vacuumTransform.position - trans.position;
             float distance = Vector2.Distance(vacuumTransform.position, trans.position);
@@ -53,9 +63,11 @@ public class Coin : MonoBehaviour {
         }
     }
 
-    private void OnMouseEnter()
+    private void OnMouseDown()
     {
-        this.gameObject.GetComponent<Image>().color = Color.black;
+        this.gameObject.GetComponent<Image>().color = Color.green;
+        this.transform.localScale = new Vector3(1.25f, 1.25f);
+        isSelected = true;
     }
 
     void OnTriggerEnter(Collider other)

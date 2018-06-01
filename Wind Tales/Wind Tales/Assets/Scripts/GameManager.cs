@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
     public GameObject coin;
-
+    public int score;
+    public Text scoreText;
     public GameObject parent;
 
     public Vector3 center;
@@ -17,10 +19,10 @@ public class GameManager : MonoBehaviour {
 	
 	void Update ()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            SpawnCoin();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    SpawnCoin();
+        //}
     }
 
     void SpawnCoin()
@@ -36,5 +38,11 @@ public class GameManager : MonoBehaviour {
     {
         Gizmos.color = Color.green;
         Gizmos.DrawCube(center, size);
+    }
+
+    public void AddScore()
+    {
+        score++;
+        scoreText.text = score.ToString();
     }
 }
