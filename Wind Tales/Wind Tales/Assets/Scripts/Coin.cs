@@ -26,18 +26,6 @@ public class Coin : MonoBehaviour {
 
     void Update()
     {
-        //RaycastHit hit;
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //if (Physics.Raycast(ray, out hit, 100f))
-        //{
-        //    if (hit.transform)
-        //    {
-        //        //Debug.Log(hit.transform.gameObject.transform.position);
-        //        Debug.Log("Hit! " + Time.time);
-        //        isSelected = true;
-        //    }
-        //}
-
         //vacuumStrength += Input.GetAxis("Player_SimulateBreathing") / 5;
 
         //value += Input.GetAxis("Player_SimulateBreathing");
@@ -66,7 +54,7 @@ public class Coin : MonoBehaviour {
     private void OnMouseDown()
     {
         this.gameObject.GetComponent<Image>().color = Color.green;
-        this.transform.localScale = new Vector3(1.25f, 1.25f);
+        this.transform.localScale = new Vector3(1.45f, 1.45f);
         isSelected = true;
     }
 
