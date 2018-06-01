@@ -1,47 +1,35 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Coin : MonoBehaviour {
 
     public float vacuumStrength = 5f;
-    public float distanceStrength = 10f;
+    public float distanceStrength = 0f;
     public int vacuumDirection = 1;
     public bool loseVacuumEffect = true;
 
     private Transform trans;
     private Transform vacuumTransform;
     private Rigidbody coinRigidbody;
-    private bool inRange;
+    private bool inRange = false;
 
-    private bool isSelected = false;
+    public bool isSelected = false;
 
     void Awake()
     {
         trans = transform;
         coinRigidbody = trans.GetComponent<Rigidbody>();
+        coinRigidbody.AddForce(this.transform.forward * 10, ForceMode.Force);
     }
 
     void Update()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(ray, out hit, 100f))
-        {
-            if (hit.transform)
-            {
-                Debug.Log(hit.transform.gameObject);
-            }
-        }
-
-        if (isSelected)
-        {
-            this.transform.localScale += new Vector3(2f, 2f);
-        }
+        vacuumStrength = Input.GetAxis("Player_SimulateBreathing");
     }
 
     void FixedUpdate()
     {
-        if (inRange)
+        if (inRange && isSelected)
         {
             Vector2 directionToVacuum = vacuumTransform.position - trans.position;
             float distance = Vector2.Distance(vacuumTransform.position, trans.position);
@@ -49,6 +37,13 @@ public class Coin : MonoBehaviour {
 
             coinRigidbody.AddForce(vacuumDistanceStrength * (directionToVacuum * vacuumDirection), ForceMode.Force);
         }
+    }
+
+    private void OnMouseDown()
+    {
+        this.gameObject.GetComponent<Image>().color = Color.green;
+        this.transform.localScale = new Vector3(1.45f, 1.45f);
+        isSelected = true;
     }
 
     void OnTriggerEnter(Collider other)
