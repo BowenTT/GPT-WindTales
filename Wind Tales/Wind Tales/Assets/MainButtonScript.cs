@@ -1,10 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class MainButtonScript : MonoBehaviour
 {
@@ -29,11 +27,6 @@ public class MainButtonScript : MonoBehaviour
 	[SerializeField]
 	private GameObject loadingScreen;
 
-	void Start()
-	{
-
-	}
-
 	void Update()
 	{
 		if (available)
@@ -52,24 +45,30 @@ public class MainButtonScript : MonoBehaviour
 		}
 	}
 
-	public void OnClick()
+	public void OnClick(string scene)
 	{
-		Debug.Log("YOYOYO");
-		StartCoroutine(SwitchScene());
+		Debug.Log("Lets switch");
+		StartCoroutine(SwitchScene(scene));
 	}
 
-	private IEnumerator SwitchScene()
+	private IEnumerator SwitchScene(string name)
 	{
 		loadingScreen.SetActive(true);
 		var image = loadingScreen.GetComponent<Image>();
+		var scene = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
+		scene.allowSceneActivation = false;
 
+		image.color = new Color(0, 0, 0, 0);
 		while (image.color.a < 1)
 		{
-			Debug.Log("SHIIIET");
-			image.color += new Color(0, 0, 0, 0.02f);
+			image.color += new Color(0, 0, 0, 0.04f);
 			yield return null;
-
 		}
+		while (scene.progress < 0.9f)
+		{
+			yield return null;
+		}
+		scene.allowSceneActivation = true;
 
 	}
 }
