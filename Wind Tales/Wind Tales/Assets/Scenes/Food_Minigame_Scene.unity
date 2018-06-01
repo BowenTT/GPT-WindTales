@@ -363,11 +363,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Camera: {fileID: 1810872235}
   Canvas: {fileID: 213631871}
---- !u!1 &452629029 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1376046055069474, guid: 0ce6988b0545d4b84bcbd379a8c55e59,
-    type: 2}
-  m_PrefabInternal: {fileID: 2044908228}
 --- !u!1 &547489644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1242,11 +1237,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114348630472818622, guid: 0ce6988b0545d4b84bcbd379a8c55e59,
-        type: 2}
-      propertyPath: loadingScreen
-      value: 
-      objectReference: {fileID: 452629029}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ce6988b0545d4b84bcbd379a8c55e59, type: 2}
   m_IsPrefabParent: 0

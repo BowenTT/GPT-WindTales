@@ -27,6 +27,15 @@ public class MainButtonScript : MonoBehaviour
 	[SerializeField]
 	private GameObject loadingScreen;
 
+	private void Start()
+	{
+		if (notification)
+		{
+			StartCoroutine(AnimateExclamation());
+
+		}
+	}
+
 	void Update()
 	{
 		if (available)
@@ -42,10 +51,15 @@ public class MainButtonScript : MonoBehaviour
 		if (notification != notificationObject.activeSelf)
 		{
 			notificationObject.SetActive(notification);
+			if (notification)
+			{
+				StartCoroutine(AnimateExclamation());
+
+			}
 		}
 	}
 
-	public void OnClick(string scene)
+	public void OnClick()
 	{
 		Debug.Log("Lets switch");
 		StartCoroutine(SwitchScene(scene));
@@ -70,5 +84,33 @@ public class MainButtonScript : MonoBehaviour
 		}
 		scene.allowSceneActivation = true;
 
+	}
+
+	private IEnumerator AnimateExclamation()
+	{
+		//This will make the animation play for 1 second
+		while (notification)
+		{
+			for (int i = 0; i < 15; i++)
+			{
+				notificationObject.transform.localScale += new Vector3(0.03f, 0.03f, 0);
+				yield return ExecuteAfterTime(0.05f);
+
+			}
+
+			for (int i = 0; i < 15; i++)
+			{
+				notificationObject.transform.localScale -= new Vector3(0.03f, 0.03f, 0);
+				yield return ExecuteAfterTime(0.05f);
+
+			}
+		}
+	}
+
+	IEnumerator ExecuteAfterTime(float time)
+	{
+		yield return new WaitForSeconds(time);
+
+		// Code to execute after the delay
 	}
 }
