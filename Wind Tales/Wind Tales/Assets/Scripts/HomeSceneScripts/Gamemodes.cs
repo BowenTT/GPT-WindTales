@@ -49,8 +49,11 @@ public class Gamemodes : MonoBehaviour {
         PlayerPet.gameObject.GetComponent<Animator>().enabled = false;
 
         //Create a new ball and re-engage Rigidbody and re-enable the AcrobatMode button
+        if(PlayerPet.gameObject.GetComponent<Rigidbody2D>() == null)
+        {
+            PlayerPet.gameObject.AddComponent<Rigidbody2D>();  
+        }
         SoccerBall.SetActive(true);
-        PlayerPet.gameObject.AddComponent<Rigidbody2D>();
         AcrobatModeButton.interactable = true;
 
         // Reset PlayerPet's position

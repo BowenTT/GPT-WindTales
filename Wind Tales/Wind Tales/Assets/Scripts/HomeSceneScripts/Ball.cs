@@ -5,7 +5,8 @@ using UnityEngine;
 public class Ball : MonoBehaviour {
 
     private Rigidbody2D BallObject;
-    public int force = 1000;
+    public int MinForce = 500;
+    public int MaxForce = 1000;
 	// Use this for initialization
 	void Start () {
         BallObject = gameObject.GetComponent<Rigidbody2D>();
@@ -19,6 +20,7 @@ public class Ball : MonoBehaviour {
 	private void OnMouseDown()
 	{
         Vector2 direction = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1));
-        BallObject.AddForce(direction * force);
+        int randomForce = Random.Range(MinForce, MaxForce);
+        BallObject.AddForce(direction * randomForce);
 	}
 }
