@@ -14,6 +14,12 @@ public class Gamemodes : MonoBehaviour {
     [SerializeField]
     private Button AcrobatModeButton;
 
+    [SerializeField]
+    private Sprite GreyButton;
+
+    [SerializeField]
+    private Sprite GreenButton;
+
     private int GameMode;
 	// Use this for initialization
     void Start () {
@@ -55,6 +61,7 @@ public class Gamemodes : MonoBehaviour {
         }
         SoccerBall.SetActive(true);
         AcrobatModeButton.interactable = true;
+        AcrobatModeButton.image.sprite = GreenButton;
 
         // Reset PlayerPet's position
         PlayerPet.transform.position = new Vector3(0, -2.6f, 0);
@@ -62,6 +69,7 @@ public class Gamemodes : MonoBehaviour {
 
         //Disable the button
         BallModeButton.interactable = false;
+        BallModeButton.image.sprite = GreyButton;
     }
 
     void AcrobaticMode()
@@ -69,6 +77,7 @@ public class Gamemodes : MonoBehaviour {
         //Disable the ball and re-enable the BallMode button
         SoccerBall.SetActive(false);
         BallModeButton.interactable = true;
+        BallModeButton.image.sprite = GreenButton;
 
         //Reset PlayerPet's position
         PlayerPet.transform.position = new Vector3(0, -2.6f, 0);
@@ -82,6 +91,7 @@ public class Gamemodes : MonoBehaviour {
 
         //Disable the button
         AcrobatModeButton.interactable = false;
+        AcrobatModeButton.image.sprite = GreyButton;
 
     }
 }
