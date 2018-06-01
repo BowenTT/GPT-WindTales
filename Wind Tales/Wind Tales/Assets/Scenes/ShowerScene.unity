@@ -311,8 +311,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 727, y: 309}
+  m_AnchoredPosition: {x: 0.00026512, y: -4.76}
+  m_SizeDelta: {x: 657, y: 299.48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &728635685
 MonoBehaviour:
@@ -702,11 +702,11 @@ MonoBehaviour:
   filth2: {fileID: 21300000, guid: 910613bb2e2cf3045bfb260673d9531a, type: 3}
   filth1: {fileID: 21300000, guid: 33b6d797160eea74eb22d645d3e2dd64, type: 3}
   clean: {fileID: 21300000, guid: a95f98dd8f7c93c4b910f0568613e593, type: 3}
-  wetOverlay1: {fileID: 21300000, guid: 18b41f48a27c2fc4f8b5fb1e4d2a3f6b, type: 3}
-  wetOverlay2: {fileID: 21300000, guid: f87105095df5f544986d2c2ec0b9ae21, type: 3}
-  wetOverlay3: {fileID: 21300000, guid: cf4c7a39ebf81a84681e403ed91919b5, type: 3}
+  wetOverlay1: {fileID: 21300000, guid: 0cdad0f3054d5354a93435fa3602a5aa, type: 3}
+  wetOverlay2: {fileID: 21300000, guid: b52972bf3f848504caacc1fe44feab68, type: 3}
+  wetOverlay3: {fileID: 21300000, guid: c2902b6b63965f8409e1470f6d147996, type: 3}
   wetOverlay: {fileID: 606130106}
-  maxFlow: 0.99
+  maxFlow: 10.11
 --- !u!50 &1255595814
 Rigidbody2D:
   serializedVersion: 4

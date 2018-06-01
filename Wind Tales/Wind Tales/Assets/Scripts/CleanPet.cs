@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,8 @@ public class CleanPet : MonoBehaviour
     private Vector3 oldPosition;
     private bool isDry = true;
     private float cumalativeFlow;
+    private bool Measuring = false;
+    private float maxMeasuredFlow;
 
     void Start()
     {
@@ -33,7 +36,11 @@ public class CleanPet : MonoBehaviour
     void Update()
     {
         float input = Input.GetAxis("Player_SimulateBreathing");
-        DryPet(input);
+        if (input > 0 && !Measuring)
+        {
+            StartCoroutine(measureMaxFlow());
+        }
+        DryPet(maxMeasuredFlow);
         Debug.Log(input);
         if (isDry == false)
         {
@@ -46,6 +53,28 @@ public class CleanPet : MonoBehaviour
         }
 
     }
+
+    private IEnumerator measureMaxFlow()
+    {
+        Measuring = true;
+        var measures = new List<float>();
+        var start = DateTime.Now;
+        while ((DateTime.Now - start).Seconds < 2)
+        {
+            measures.Add(Input.GetAxis("Player_SimulateBreathing"));
+            yield return new WaitForSeconds(0.0005f);
+        }
+        foreach (var flow in measures)
+        {
+            if (flow > maxMeasuredFlow)
+            {
+               maxMeasuredFlow = flow;
+            }
+        }
+        Debug.Log("max Measured flow " + maxMeasuredFlow);
+        Measuring = false;
+    }
+
 
         void OnCollisionEnter2D(Collision2D col)
     {
@@ -113,6 +142,7 @@ public class CleanPet : MonoBehaviour
     {
         wetOverlay.enabled = false;
         cumalativeFlow = 0;
+        maxMeasuredFlow = 0f;
     }
 
     void WetAnimation()
