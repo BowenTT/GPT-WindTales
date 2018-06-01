@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour {
 
-    private Rigidbody BallObject;
+    private Rigidbody2D BallObject;
     public int force = 1000;
 	// Use this for initialization
 	void Start () {
-        BallObject = gameObject.GetComponent<Rigidbody>();
+        BallObject = gameObject.GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame

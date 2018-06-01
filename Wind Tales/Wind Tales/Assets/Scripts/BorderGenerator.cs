@@ -24,10 +24,10 @@ public class BorderGenerator : MonoBehaviour {
 
         Debug.Log(ScreenHeight);
 
-        GameObject Roof = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        GameObject LeftWall = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        GameObject RightWall = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        GameObject Floor = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject Roof = createColliderWall();
+        GameObject LeftWall = createColliderWall();
+        GameObject RightWall = createColliderWall();
+        GameObject Floor = createColliderWall();
 
         Roof.transform.localScale = new Vector3((float)ScreenWidth, 1);
         Roof.transform.position = new Vector3(cam.transform.position.x, (float)(ScreenHeight - 0.5));
@@ -39,9 +39,17 @@ public class BorderGenerator : MonoBehaviour {
         RightWall.transform.position = new Vector3(ScreenWidth / 2, 0);
 
         Floor.transform.localScale = new Vector3((float)ScreenWidth, 1);
-        Floor.transform.position = new Vector3(cam.transform.position.x, -((float)(ScreenHeight - 1)));
+        Floor.transform.position = new Vector3(cam.transform.position.x, -((float)(ScreenHeight - 1.1)));
 
 
 
 	}
+
+    private GameObject createColliderWall()
+    {
+        GameObject Wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        DestroyImmediate(Wall.GetComponent<Collider>());
+        Wall.AddComponent<BoxCollider2D>();
+        return Wall;
+    }
 }
