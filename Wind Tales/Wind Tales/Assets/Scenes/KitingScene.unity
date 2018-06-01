@@ -408,8 +408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a828a9fd0095b641b20a9adba1d2651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 0.05
-  airflow: 0.2
+  gravity: 0.0005
+  airflow: 0.001
+  startingBoost: 1
   background: {fileID: 1495783588}
   startingPosition: {fileID: 1983794722}
   groundLevel: {fileID: 569336008}
