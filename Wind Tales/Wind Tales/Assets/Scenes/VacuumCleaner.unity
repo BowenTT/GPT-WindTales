@@ -570,13 +570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d2c6c31e99ece3429f39bca0df95158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coin: {fileID: 1671659223589418, guid: d5c0fb27daac2d6489c48d820f9b6fb2, type: 2}
-  score: 0
-  scoreText: {fileID: 1003566309}
-  parent: {fileID: 2033194204}
-  center: {x: 0, y: 0, z: 0}
-  size: {x: 0, y: 0, z: 0}
-  coinRigidBody: {fileID: 0}
 --- !u!1 &896745615
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +623,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e01faf4cb437041b19f7c62f94c01a95, type: 3}
   maxX: 750
   maxY: 450
+  totalItems: 10
   spawnRate: 2
 --- !u!1 &999093190
 GameObject:
@@ -732,8 +726,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -710.8994, y: 307.54}
-  m_SizeDelta: {x: 148.18, y: 136.91}
+  m_AnchoredPosition: {x: -719, y: 301}
+  m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1003566308
 MonoBehaviour:
@@ -746,8 +740,8 @@ MonoBehaviour:
   m_Script: {fileID: 1573420865, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 3, y: -3}
+  m_EffectColor: {r: 0, g: 1, b: 0.8930676, a: 1}
+  m_EffectDistance: {x: 4, y: -4}
   m_UseGraphicAlpha: 1
 --- !u!114 &1003566309
 MonoBehaviour:

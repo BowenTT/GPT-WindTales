@@ -10,12 +10,14 @@ public class Spawner : MonoBehaviour {
 
     public int maxX = 700;
     public int maxY = 400;
+    public int totalItems;
     public float spawnRate = 1.0f;
 
     private float countDown = 1.0f;
     private Vector2 spawnPosition;
 
     private bool spawnerON = true;
+    private int spawnedItems;
 
 	void Start ()
     {
@@ -33,12 +35,12 @@ public class Spawner : MonoBehaviour {
 
     void Update ()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            spawnerON = !spawnerON;
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    spawnerON = !spawnerON;
+        //}
 
-        if (countDown <= 0f && spawnerON)
+        if (countDown <= 0f && spawnerON && spawnedItems <= totalItems)
         {
             spawnPosition.x = Random.Range(0, maxX);
             spawnPosition.y = Random.Range(0, maxY);
@@ -47,6 +49,7 @@ public class Spawner : MonoBehaviour {
             GameObject item = Instantiate(spawnItem, spawnPosition, Quaternion.identity, spawnArea.transform);
             item.GetComponent<Image>().sprite = sprite;
             countDown = spawnRate;
+            spawnedItems++;
             return;
         }
         countDown -= Time.deltaTime;
