@@ -698,6 +698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   filthyness: 400
+  MaxFlow: 5.5
   filth3: {fileID: 21300000, guid: 679d9b5cb00321c4faa835b4dd4ef1b9, type: 3}
   filth2: {fileID: 21300000, guid: 9906ffd202c3bb947ba84e5f522a3851, type: 3}
   filth1: {fileID: 21300000, guid: c6f50c8fa2711f7469ff3877f0b63cf4, type: 3}
@@ -706,7 +707,6 @@ MonoBehaviour:
   wetOverlay2: {fileID: 21300000, guid: 6bc52c514c264a64e89f037631d5b0c4, type: 3}
   wetOverlay3: {fileID: 21300000, guid: 333aea47bcb5a00489e95ac3981b2cd1, type: 3}
   wetOverlay: {fileID: 606130106}
-  maxFlow: 10.11
 --- !u!50 &1255595814
 Rigidbody2D:
   serializedVersion: 4

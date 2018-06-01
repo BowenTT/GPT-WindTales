@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CleanPet : MonoBehaviour
 {
     public int filthyness;
+    public float MaxFlow;
 
     public Sprite filth3;
     public Sprite filth2;
@@ -16,8 +17,8 @@ public class CleanPet : MonoBehaviour
     public Sprite wetOverlay2;
     public Sprite wetOverlay3;
     public Image wetOverlay;
-    public float maxFlow;
 
+    private float maxFlow;
     private int MaxFilth;
     private int loop = 0;
     private GameObject currentPet;
@@ -30,7 +31,9 @@ public class CleanPet : MonoBehaviour
     void Start()
     {
         MaxFilth = filthyness;
+        maxFlow = MaxFlow;
         Debug.Log(MaxFilth);
+        Debug.Log(maxFlow);
     }
 
     void Update()
@@ -136,6 +139,8 @@ public class CleanPet : MonoBehaviour
             isDry = true;
         }
         cumalativeFlow += input;
+        maxMeasuredFlow = 0f;
+        Debug.Log("cumalative flow " + cumalativeFlow);
     }
 
     void turnOffWetAnimation()
