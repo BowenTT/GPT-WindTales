@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Coin : MonoBehaviour {
 
     public float vacuumStrength = 5f;
-    public float distanceStrength = 10f;
+    public float distanceStrength = 0f;
     public int vacuumDirection = 1;
     public bool loseVacuumEffect = true;
 
@@ -12,8 +12,6 @@ public class Coin : MonoBehaviour {
     private Transform vacuumTransform;
     private Rigidbody coinRigidbody;
     private bool inRange = false;
-
-    private float value;
 
     public bool isSelected = false;
 
@@ -26,17 +24,7 @@ public class Coin : MonoBehaviour {
 
     void Update()
     {
-        //vacuumStrength += Input.GetAxis("Player_SimulateBreathing") / 5;
-
-        //value += Input.GetAxis("Player_SimulateBreathing");
-        //Debug.Log(value);
-
-        if (isSelected)
-        {
-            //this.transform.localScale += new Vector3(2f, 2f);
-            //this.gameObject.GetComponent<Image>().color = Color.red;
-
-        }
+        vacuumStrength = Input.GetAxis("Player_SimulateBreathing");
     }
 
     void FixedUpdate()

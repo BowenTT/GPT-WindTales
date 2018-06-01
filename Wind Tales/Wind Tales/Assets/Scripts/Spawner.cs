@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Spawner : MonoBehaviour {
 
     public Canvas spawnArea;
     public GameObject spawnItem;
+
+    public Sprite[] sprites;
 
     public int maxX = 700;
     public int maxY = 400;
@@ -16,6 +19,7 @@ public class Spawner : MonoBehaviour {
 
 	void Start ()
     {
+        #region Old Code
         //for (int i = 0; i < 10; i++)
         //{
         //    Vector2 mousePosition = Input.mousePosition;
@@ -24,9 +28,10 @@ public class Spawner : MonoBehaviour {
 
         //    Instantiate(spawnItem, mousePosition, Quaternion.identity, spawnArea.transform);
         //}
+        #endregion
     }
-	
-	void Update ()
+
+    void Update ()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -37,7 +42,10 @@ public class Spawner : MonoBehaviour {
         {
             spawnPosition.x = Random.Range(0, maxX);
             spawnPosition.y = Random.Range(0, maxY);
-            Instantiate(spawnItem, spawnPosition, Quaternion.identity, spawnArea.transform);
+            int arrayIndex = Random.Range(0, sprites.Length);
+            Sprite sprite = sprites[arrayIndex];
+            GameObject item = Instantiate(spawnItem, spawnPosition, Quaternion.identity, spawnArea.transform);
+            item.GetComponent<Image>().sprite = sprite;
             countDown = spawnRate;
             return;
         }
