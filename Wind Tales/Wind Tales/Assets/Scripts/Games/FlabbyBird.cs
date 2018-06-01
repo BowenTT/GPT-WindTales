@@ -7,11 +7,15 @@ using UnityEngine;
 public class FlabbyBird : MiniGames {
 
 
-    public double gravity = -0.2;
+     public double gravity = -0.2;
 
 
     public override StatChange Play()
     {
+                
+
+
+
         return new StatChange(0,0,0);
     }
     //have to make gravity work

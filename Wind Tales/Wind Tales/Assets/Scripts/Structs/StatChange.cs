@@ -9,9 +9,9 @@ namespace Structs
 		int hunger;
 		int clean;
 		int happiness;
-		public StatChange(int hun, int cln, int hap)
+		public StatChange(int hng, int cln, int hap)
 		{
-			hunger = hun;
+			hunger = hng;
 			clean = cln;
 			happiness = hap;
 		}
