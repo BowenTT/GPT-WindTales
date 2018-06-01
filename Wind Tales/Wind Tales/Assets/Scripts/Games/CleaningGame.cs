@@ -10,7 +10,7 @@ namespace Games
 
 		public override StatChange Play()
 		{
-			return new StatChange(0,0,0);
+			return new StatChange(0, 0, 0);
 		}
 	}
 }
