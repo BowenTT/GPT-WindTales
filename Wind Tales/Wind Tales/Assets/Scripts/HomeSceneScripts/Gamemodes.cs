@@ -21,9 +21,10 @@ public class Gamemodes : MonoBehaviour {
     private Sprite GreenButton;
 
     private int GameMode;
+    [SerializeField]
+    private NPCMovement NPCMovement;
 	// Use this for initialization
     void Start () {
-        
     }
 	
 
@@ -70,6 +71,9 @@ public class Gamemodes : MonoBehaviour {
         //Disable the button
         BallModeButton.interactable = false;
         BallModeButton.image.sprite = GreyButton;
+
+        //Enable NPC Movement
+        NPCMovement.enabled = true;
     }
 
     void AcrobaticMode()
@@ -92,6 +96,9 @@ public class Gamemodes : MonoBehaviour {
         //Disable the button
         AcrobatModeButton.interactable = false;
         AcrobatModeButton.image.sprite = GreyButton;
+
+        //Disable NPC Movement
+        NPCMovement.enabled = false;
 
     }
 }
