@@ -253,7 +253,7 @@ MonoBehaviour:
   airFlow4: {fileID: 21300000, guid: d3e9fa0ed2be9da4ebdcc9d8c1247cf0, type: 3}
   imgChar: {fileID: 114169191228229016}
   ImgAir: {fileID: 114472252807141624}
-  audio: {fileID: 0}
+  audio: {fileID: 8300000, guid: fcf601f5b99036d468ad32863a2c40b7, type: 3}
 --- !u!114 &114713445439023190
 MonoBehaviour:
   m_ObjectHideFlags: 1
