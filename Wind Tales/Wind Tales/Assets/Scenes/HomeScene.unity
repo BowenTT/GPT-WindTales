@@ -871,9 +871,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_Mass: 100
+  m_LinearDrag: 0.5
+  m_AngularDrag: 0.5
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -921,6 +921,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   directionChangeTime: 3
+  minTimeToChangeDirection: 5
+  maxTimeToChangeDirection: 10
   movementTime: 2
   MoveLeftSpeed: -0.02
   MoveRightSpeed: 0.02
@@ -928,6 +930,8 @@ MonoBehaviour:
   CollidingWithWall: 0
   LeftWall: 0
   RightWall: 0
+  MinForce: 400
+  MaxForce: 800
 --- !u!224 &853323638 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224903393656206292, guid: 87e5af2d0f63b4ca2be1766dacd04cfd,
@@ -1366,10 +1370,6 @@ Prefab:
     - target: {fileID: 4935240531098310, guid: ec3e8f3ed27e2244caaedaf589590a03, type: 2}
       propertyPath: m_RootOrder
       value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975457108487340, guid: ec3e8f3ed27e2244caaedaf589590a03, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ec3e8f3ed27e2244caaedaf589590a03, type: 2}

@@ -9,6 +9,7 @@ TagManager:
   - CoinTrigger
   - LeftWall
   - RightWall
+  - Ball
   layers:
   - Default
   - TransparentFX

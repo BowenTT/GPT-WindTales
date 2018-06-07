@@ -31,10 +31,10 @@ public class NPCMovement : MonoBehaviour {
     [SerializeField]
     private bool RightWall = false;
 
-    Rigidbody2D rb;
+    public int MinForce = 100;
+    public int MaxForce = 150;
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
         ChangeDirection(Random.Range(0,2));
     }
 
@@ -131,27 +131,30 @@ public class NPCMovement : MonoBehaviour {
                 RightWall = true;
             }
         }
+        if (collision.gameObject.tag == "Ball")
+        {
+            Rigidbody2D BallObject = collision.gameObject.GetComponent<Rigidbody2D>();
+            int randomForce = Random.Range(MinForce, MaxForce);
+            Vector2 direction = new Vector2(Random.Range(-1, 1), Random.Range(-1, 1));
+            BallObject.AddForce( direction * randomForce);
+        }
+
 
 	}
 
 private bool RolledOver()
     {
-        return (transform.rotation.z > 0 || transform.rotation.z < 0);
+        return (transform.eulerAngles.z > 10 || transform.eulerAngles.z < -10);
     }
 
     private void ResetPetRotation()
     {
-        //Quaternion startRotation = transform.rotation;
-        //Quaternion endRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
-        //float rotationProgress = 0;
-        //if (rotationProgress < 1 && rotationProgress >= 0)
-        //{
-        //    rotationProgress += Time.deltaTime * 5;
-        //    transform.rotation = Quaternion.Lerp(startRotation, endRotation, rotationProgress);
-        //}
+        float axisHorizontal = Input.GetAxisRaw("Horizontal");
+        float axisVertical = Input.GetAxisRaw("Vertical");
         transform.position = new Vector3(transform.position.x, HeightOfFloor, transform.position.z);
         transform.rotation = Quaternion.identity;
-        rb.velocity = new Vector2(0, 0);
+        axisHorizontal = 0;
+        axisVertical = 0;
 
     }
 
