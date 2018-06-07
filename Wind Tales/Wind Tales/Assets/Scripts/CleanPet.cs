@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 
 public class CleanPet : MonoBehaviour
 {
-    public int filthyness;
+    public float filthyness;
     public float MaxFlow;
 
     public Sprite filth3;
@@ -19,7 +20,8 @@ public class CleanPet : MonoBehaviour
     public Image wetOverlay;
 
     private float maxFlow;
-    private int MaxFilth;
+    private float MaxFilth;
+    private float currentFilth;
     private int loop = 0;
     private GameObject currentPet;
     private Vector3 oldPosition;
@@ -30,7 +32,9 @@ public class CleanPet : MonoBehaviour
 
     void Start()
     {
+        GameModel.SetCleanliness(350f); // temp until script doses this when game is started
         MaxFilth = filthyness;
+        currentFilth = GameModel.GetCleanliness();
         maxFlow = MaxFlow;
         Debug.Log(MaxFilth);
         Debug.Log(maxFlow);
@@ -39,6 +43,7 @@ public class CleanPet : MonoBehaviour
     void Update()
     {
         float input = Input.GetAxis("Player_SimulateBreathing");
+        Debug.Log(input);
         if (input > 0 && !Measuring)
         {
             StartCoroutine(measureMaxFlow());
@@ -88,7 +93,7 @@ public class CleanPet : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D col)
     {
-        if (filthyness > 0)
+        if (currentFilth > 0)
         {
             Debug.Log("collision detected");
             switch (col.gameObject.tag)
@@ -97,13 +102,15 @@ public class CleanPet : MonoBehaviour
                     Debug.Log("collision on cleaning detected");
                     if (detectMovement(col))
                     {
-                        filthyness--;
-                        Debug.Log("filthyness is " + filthyness);
+                        currentFilth--;
+                        Debug.Log("filthyness is " + currentFilth);
                         UpdateSprite();
                     }
                     break;
             }
         }
+        else
+            GameModel.SetCleanliness(currentFilth);
     }
 
     bool detectMovement(Collision2D col)
@@ -122,13 +129,13 @@ public class CleanPet : MonoBehaviour
     void UpdateSprite()
     {
         Image filthupdate = currentPet.GetComponent<Image>();
-        if (filthyness == 0)
+        if (currentFilth == 0)
             filthupdate.sprite = clean;
-        if (filthyness == MaxFilth / 4)
+        if (currentFilth == MaxFilth / 4)
             filthupdate.sprite = filth1;
-        if (filthyness == MaxFilth / 3)
+        if (currentFilth == MaxFilth / 3)
             filthupdate.sprite = filth2;
-        if (filthyness == MaxFilth / 2)
+        if (currentFilth == MaxFilth / 2)
             filthupdate.sprite = filth3;
     }
 
