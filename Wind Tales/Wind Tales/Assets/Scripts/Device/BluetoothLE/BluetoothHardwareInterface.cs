@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class BluetoothLEHardwareInterface
@@ -27,78 +28,78 @@ public class BluetoothLEHardwareInterface
 	};
 
 #if UNITY_IPHONE || UNITY_TVOS
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLELog (string message);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEInitialize (bool asCentral, bool asPeripheral);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEDeInitialize ();
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEPauseMessages (bool isPaused);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEScanForPeripheralsWithServices (string serviceUUIDsString, bool allowDuplicates, bool rssiOnly, bool clearPeripheralList);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLERetrieveListOfPeripheralsWithServices (string serviceUUIDsString);
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLELog(string message);
 
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEStopScan ();
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEConnectToPeripheral (string name);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEDisconnectPeripheral (string name);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEReadCharacteristic (string name, string service, string characteristic);
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEInitialize(bool asCentral, bool asPeripheral);
 
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEWriteCharacteristic (string name, string service, string characteristic, byte[] data, int length, bool withResponse);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLESubscribeCharacteristic (string name, string service, string characteristic);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEUnSubscribeCharacteristic (string name, string service, string characteristic);
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEDeInitialize();
 
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEDisconnectAll ();
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEPauseMessages(bool isPaused);
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEScanForPeripheralsWithServices(string serviceUUIDsString, bool allowDuplicates, bool rssiOnly, bool clearPeripheralList);
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLERetrieveListOfPeripheralsWithServices(string serviceUUIDsString);
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEStopScan();
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEConnectToPeripheral(string name);
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEDisconnectPeripheral(string name);
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEReadCharacteristic(string name, string service, string characteristic);
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEWriteCharacteristic(string name, string service, string characteristic, byte[] data, int length, bool withResponse);
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLESubscribeCharacteristic(string name, string service, string characteristic);
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEUnSubscribeCharacteristic(string name, string service, string characteristic);
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEDisconnectAll();
 
 #if !UNITY_TVOS
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEPeripheralName (string newName);
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEPeripheralName(string newName);
 
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLECreateService (string uuid, bool primary);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLERemoveService (string uuid);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLERemoveServices ();
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLECreateService(string uuid, bool primary);
 
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLECreateCharacteristic (string uuid, int properties, int permissions, byte[] data, int length);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLERemoveCharacteristic (string uuid);
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLERemoveCharacteristics ();
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLERemoveService(string uuid);
 
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEStartAdvertising ();
-	
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEStopAdvertising ();
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLERemoveServices();
 
-	[DllImport ("__Internal")]
-	private static extern void _iOSBluetoothLEUpdateCharacteristicValue (string uuid, byte[] data, int length);
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLECreateCharacteristic(string uuid, int properties, int permissions, byte[] data, int length);
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLERemoveCharacteristic(string uuid);
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLERemoveCharacteristics();
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEStartAdvertising();
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEStopAdvertising();
+
+	[DllImport("__Internal")]
+	private static extern void _iOSBluetoothLEUpdateCharacteristicValue(string uuid, byte[] data, int length);
 #endif
 #elif UNITY_ANDROID
 	static AndroidJavaObject _android = null;
@@ -111,7 +112,7 @@ public class BluetoothLEHardwareInterface
 		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLELog (message);
+			_iOSBluetoothLELog(message);
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidBluetoothLog", message);
@@ -146,7 +147,7 @@ public class BluetoothLEHardwareInterface
 		else
 		{
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLEInitialize (asCentral, asPeripheral);
+			_iOSBluetoothLEInitialize(asCentral, asPeripheral);
 #elif UNITY_ANDROID
 			if (_android == null)
 			{
@@ -175,7 +176,7 @@ public class BluetoothLEHardwareInterface
 		else
 		{
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLEDeInitialize ();
+			_iOSBluetoothLEDeInitialize();
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidBluetoothDeInitialize");
@@ -208,7 +209,7 @@ public class BluetoothLEHardwareInterface
 		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLEPauseMessages (isPaused);
+			_iOSBluetoothLEPauseMessages(isPaused);
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidBluetoothPause", isPaused);
@@ -242,7 +243,7 @@ public class BluetoothLEHardwareInterface
 			}
 
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLEScanForPeripheralsWithServices (serviceUUIDsString, (actionAdvertisingInfo != null), rssiOnly, clearPeripheralList);
+			_iOSBluetoothLEScanForPeripheralsWithServices(serviceUUIDsString, (actionAdvertisingInfo != null), rssiOnly, clearPeripheralList);
 #elif UNITY_ANDROID
 			if (_android != null)
 			{
@@ -276,7 +277,7 @@ public class BluetoothLEHardwareInterface
 			serviceUUIDsString = serviceUUIDsString.Substring(0, serviceUUIDsString.Length - 1);
 
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLERetrieveListOfPeripheralsWithServices (serviceUUIDsString);
+			_iOSBluetoothLERetrieveListOfPeripheralsWithServices(serviceUUIDsString);
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidBluetoothRetrieveListOfPeripheralsWithServices", serviceUUIDsString);
@@ -289,7 +290,7 @@ public class BluetoothLEHardwareInterface
 		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLEStopScan ();
+			_iOSBluetoothLEStopScan();
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidBluetoothStopScan");
@@ -302,7 +303,7 @@ public class BluetoothLEHardwareInterface
 		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLEDisconnectAll ();
+			_iOSBluetoothLEDisconnectAll();
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidBluetoothDisconnectAll");
@@ -323,7 +324,7 @@ public class BluetoothLEHardwareInterface
 			}
 
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLEConnectToPeripheral (name);
+			_iOSBluetoothLEConnectToPeripheral(name);
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidBluetoothConnectToPeripheral", name);
@@ -339,7 +340,7 @@ public class BluetoothLEHardwareInterface
 				bluetoothDeviceScript.DisconnectedPeripheralAction = action;
 
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLEDisconnectPeripheral (name);
+			_iOSBluetoothLEDisconnectPeripheral(name);
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidBluetoothDisconnectPeripheral", name);
@@ -357,14 +358,14 @@ public class BluetoothLEHardwareInterface
 					bluetoothDeviceScript.DidUpdateCharacteristicValueAction[name] = new Dictionary<string, Action<string, byte[]>>();
 
 #if UNITY_IPHONE || UNITY_TVOS
-				bluetoothDeviceScript.DidUpdateCharacteristicValueAction [name] [characteristic] = action;
+				bluetoothDeviceScript.DidUpdateCharacteristicValueAction[name][characteristic] = action;
 #elif UNITY_ANDROID
 				bluetoothDeviceScript.DidUpdateCharacteristicValueAction [name] [FullUUID (characteristic).ToLower ()] = action;
 #endif
 			}
 
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLEReadCharacteristic (name, service, characteristic);
+			_iOSBluetoothLEReadCharacteristic(name, service, characteristic);
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidReadCharacteristic", name, service, characteristic);
@@ -380,7 +381,7 @@ public class BluetoothLEHardwareInterface
 				bluetoothDeviceScript.DidWriteCharacteristicAction = action;
 
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLEWriteCharacteristic (name, service, characteristic, data, length, withResponse);
+			_iOSBluetoothLEWriteCharacteristic(name, service, characteristic, data, length, withResponse);
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidWriteCharacteristic", name, service, characteristic, data, length, withResponse);
@@ -399,13 +400,13 @@ public class BluetoothLEHardwareInterface
 				characteristic = characteristic.ToUpper();
 
 #if UNITY_IPHONE || UNITY_TVOS
-				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction.ContainsKey (name))
-					bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction [name] = new Dictionary<string, Action<string>> ();
-				bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction [name] [characteristic] = notificationAction;
+				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction.ContainsKey(name))
+					bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction[name] = new Dictionary<string, Action<string>>();
+				bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction[name][characteristic] = notificationAction;
 
-				if (!bluetoothDeviceScript.DidUpdateCharacteristicValueAction.ContainsKey (name))
-					bluetoothDeviceScript.DidUpdateCharacteristicValueAction [name] = new Dictionary<string, Action<string, byte[]>> ();
-				bluetoothDeviceScript.DidUpdateCharacteristicValueAction [name] [characteristic] = action;
+				if (!bluetoothDeviceScript.DidUpdateCharacteristicValueAction.ContainsKey(name))
+					bluetoothDeviceScript.DidUpdateCharacteristicValueAction[name] = new Dictionary<string, Action<string, byte[]>>();
+				bluetoothDeviceScript.DidUpdateCharacteristicValueAction[name][characteristic] = action;
 #elif UNITY_ANDROID
 				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction.ContainsKey (name))
 					bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction [name] = new Dictionary<string, Action<string>> ();
@@ -418,7 +419,7 @@ public class BluetoothLEHardwareInterface
 			}
 
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLESubscribeCharacteristic (name, service, characteristic);
+			_iOSBluetoothLESubscribeCharacteristic(name, service, characteristic);
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidSubscribeCharacteristic", name, service, characteristic);
@@ -437,11 +438,11 @@ public class BluetoothLEHardwareInterface
 				characteristic = characteristic.ToUpper();
 
 #if UNITY_IPHONE || UNITY_TVOS
-				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction.ContainsKey (name))
+				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction.ContainsKey(name))
 					bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction[name] = new Dictionary<string, Action<string, string>>();
 				bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction[name][characteristic] = notificationAction;
 
-				if (!bluetoothDeviceScript.DidUpdateCharacteristicValueWithDeviceAddressAction.ContainsKey (name))
+				if (!bluetoothDeviceScript.DidUpdateCharacteristicValueWithDeviceAddressAction.ContainsKey(name))
 					bluetoothDeviceScript.DidUpdateCharacteristicValueWithDeviceAddressAction[name] = new Dictionary<string, Action<string, string, byte[]>>();
 				bluetoothDeviceScript.DidUpdateCharacteristicValueWithDeviceAddressAction[name][characteristic] = action;
 #elif UNITY_ANDROID
@@ -456,7 +457,7 @@ public class BluetoothLEHardwareInterface
 			}
 
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLESubscribeCharacteristic (name, service, characteristic);
+			_iOSBluetoothLESubscribeCharacteristic(name, service, characteristic);
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidSubscribeCharacteristic", name, service, characteristic);
@@ -475,12 +476,12 @@ public class BluetoothLEHardwareInterface
 				characteristic = characteristic.ToUpper();
 
 #if UNITY_IPHONE || UNITY_TVOS
-				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction.ContainsKey (name))
+				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction.ContainsKey(name))
 					bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction[name] = new Dictionary<string, Action<string, string>>();
 				bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction[name][characteristic] = null;
 
-				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction.ContainsKey (name))
-					bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction[name] = new Dictionary<string, Action<string>> ();
+				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction.ContainsKey(name))
+					bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction[name] = new Dictionary<string, Action<string>>();
 				bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicAction[name][characteristic] = null;
 #elif UNITY_ANDROID
 				if (!bluetoothDeviceScript.DidUpdateNotificationStateForCharacteristicWithDeviceAddressAction.ContainsKey (name))
@@ -494,7 +495,7 @@ public class BluetoothLEHardwareInterface
 			}
 
 #if UNITY_IPHONE || UNITY_TVOS
-			_iOSBluetoothLEUnSubscribeCharacteristic (name, service, characteristic);
+			_iOSBluetoothLEUnSubscribeCharacteristic(name, service, characteristic);
 #elif UNITY_ANDROID
 			if (_android != null)
 				_android.Call ("androidUnsubscribeCharacteristic", name, service, characteristic);
@@ -507,7 +508,7 @@ public class BluetoothLEHardwareInterface
 		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE
-			_iOSBluetoothLEPeripheralName (newName);
+			_iOSBluetoothLEPeripheralName(newName);
 #endif
 		}
 	}
@@ -520,7 +521,7 @@ public class BluetoothLEHardwareInterface
 				bluetoothDeviceScript.ServiceAddedAction = action;
 
 #if UNITY_IPHONE
-			_iOSBluetoothLECreateService (uuid, primary);
+			_iOSBluetoothLECreateService(uuid, primary);
 #endif
 		}
 	}
@@ -530,7 +531,7 @@ public class BluetoothLEHardwareInterface
 		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE
-			_iOSBluetoothLERemoveService (uuid);
+			_iOSBluetoothLERemoveService(uuid);
 #endif
 		}
 	}
@@ -540,7 +541,7 @@ public class BluetoothLEHardwareInterface
 		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE
-			_iOSBluetoothLERemoveServices ();
+			_iOSBluetoothLERemoveServices();
 #endif
 		}
 	}
@@ -553,7 +554,7 @@ public class BluetoothLEHardwareInterface
 				bluetoothDeviceScript.PeripheralReceivedWriteDataAction = action;
 
 #if UNITY_IPHONE
-			_iOSBluetoothLECreateCharacteristic (uuid, (int)properties, (int)permissions, data, length);
+			_iOSBluetoothLECreateCharacteristic(uuid, (int)properties, (int)permissions, data, length);
 #endif
 		}
 	}
@@ -566,7 +567,7 @@ public class BluetoothLEHardwareInterface
 				bluetoothDeviceScript.PeripheralReceivedWriteDataAction = null;
 
 #if UNITY_IPHONE
-			_iOSBluetoothLERemoveCharacteristic (uuid);
+			_iOSBluetoothLERemoveCharacteristic(uuid);
 #endif
 		}
 	}
@@ -576,7 +577,7 @@ public class BluetoothLEHardwareInterface
 		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE
-			_iOSBluetoothLERemoveCharacteristics ();
+			_iOSBluetoothLERemoveCharacteristics();
 #endif
 		}
 	}
@@ -589,7 +590,7 @@ public class BluetoothLEHardwareInterface
 				bluetoothDeviceScript.StartedAdvertisingAction = action;
 
 #if UNITY_IPHONE
-			_iOSBluetoothLEStartAdvertising ();
+			_iOSBluetoothLEStartAdvertising();
 #endif
 		}
 	}
@@ -602,7 +603,7 @@ public class BluetoothLEHardwareInterface
 				bluetoothDeviceScript.StoppedAdvertisingAction = action;
 
 #if UNITY_IPHONE
-			_iOSBluetoothLEStopAdvertising ();
+			_iOSBluetoothLEStopAdvertising();
 #endif
 		}
 	}
@@ -612,7 +613,7 @@ public class BluetoothLEHardwareInterface
 		if (!UnityEngine.Application.isEditor)
 		{
 #if UNITY_IPHONE
-			_iOSBluetoothLEUpdateCharacteristicValue (uuid, data, length);
+			_iOSBluetoothLEUpdateCharacteristicValue(uuid, data, length);
 #endif
 		}
 	}
