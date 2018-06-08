@@ -7,6 +7,9 @@ TagManager:
   - Food
   - Coin
   - CoinTrigger
+  - LeftWall
+  - RightWall
+  - Ball
   layers:
   - Default
   - TransparentFX
