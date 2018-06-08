@@ -62,7 +62,7 @@ public class NPCMovement : MonoBehaviour {
     {
         directionChangeTime -= Time.deltaTime;
         movementTime -= Time.deltaTime;
-      
+
 
         if (directionChangeTime <= 0)
         {
@@ -101,8 +101,8 @@ public class NPCMovement : MonoBehaviour {
             RightWall = false;
             directionChangeTime = Random.Range(minTimeToChangeDirection, maxTimeToChangeDirection);
         }
-    Vector3 oPos = transform.position;
-    if (movementTime >= 0)
+        Vector3 oPos = transform.position;
+        if (movementTime >= 0 && (Direction > 0f || Direction < 0f))
     {
         transform.position = new Vector3(oPos.x + Direction, oPos.y + HopHeight, oPos.z);
     }
