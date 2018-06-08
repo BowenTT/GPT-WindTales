@@ -9,6 +9,7 @@ public class SwimmingGame : MonoBehaviour
     public Rigidbody2D character;
     private bool comingUp;
     private bool goingDown;
+    private bool swimDisabled;
 
     int speed;
 
@@ -17,6 +18,7 @@ public class SwimmingGame : MonoBehaviour
         speed = 5;
         comingUp = false;
         goingDown = false;
+        swimDisabled = false;
     }
 
     void Update()
@@ -27,6 +29,8 @@ public class SwimmingGame : MonoBehaviour
         }
         else
         {
+            //          [[ DRIJF EFFECT ]]
+
             // Check of de player te ver naar boven drijft
             if (character.transform.position.y >= 1)
             {
@@ -39,25 +43,38 @@ public class SwimmingGame : MonoBehaviour
                     comingUp = false;
                 }
 
-                //De player word elke keer een stukje naar beneden geduwd waardoor er een schommel drijf effect komt.
+                //De player word elke keer een stukje naar beneden 
+                //geduwd waardoor er een schommel drijf effect komt.
                 character.AddForce(-transform.up * 20);
             }
 
-            //Zorgt dat de button om te duiken niet meer werkt zodat de player niet verder kan duiken als de player op y-11 zit of lager.
-            if (transform.position.y <= -11)
-            { }
-            else
+            //          [[ UITBLAZEN ]]
+
+            //Als de player uitblaast dan komt de character weer omhoog
+            if (Input.GetButton("Breath out"))
             {
-                //als de player hoger dan y-11 zit kan de player space gebruiken om verder te duiken.
-                if (Input.GetKeyDown("space"))
+                comingUp = true;
+                goingDown = false;
+            }
+
+            //          [[ INADEMEN ]]
+            //als de player hoger dan y-11 zit kan de player 
+            //space gebruiken om verder te duiken. (dadelijk inademen)
+            if (!swimDisabled)
+            {
+                if (Input.GetButton("Breath in"))
                 {
-                    character.AddForce(-transform.up * 400);
+                    character.AddForce(-transform.up * 10);
                     comingUp = true;
                     goingDown = true;
                 }
             }
 
-            //Als de player onder y-14 komt. Word de force op zero gezet en word hij terug gespawned naar y-14
+            if (character.transform.position.y >= -13f)
+            {
+                swimDisabled = false;
+            }
+            //Als de player onder y-14 komt. Word de force op zero gezet
             //zodat de player niet uit beeld gaat.
             if (character.transform.position.y <= -14f)
             {
@@ -65,7 +82,7 @@ public class SwimmingGame : MonoBehaviour
                 if (goingDown)
                 {
                     character.velocity = Vector2.zero;
-                    character.transform.position = new Vector2(0, -14f);
+                    swimDisabled = true;
                     goingDown = false;
                 }
             }
