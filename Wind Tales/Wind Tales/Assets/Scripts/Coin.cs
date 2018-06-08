@@ -25,6 +25,7 @@ public class Coin : MonoBehaviour {
     void Update()
     {
         vacuumStrength = Input.GetAxis("Player_SimulateBreathing");
+        Debug.Log(vacuumStrength);
     }
 
     void FixedUpdate()
