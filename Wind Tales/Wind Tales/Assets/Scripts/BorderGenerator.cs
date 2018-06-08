@@ -34,9 +34,11 @@ public class BorderGenerator : MonoBehaviour {
 
         LeftWall.transform.localScale = new Vector3(0.01f, (float)ScreenHeight * 2);
         LeftWall.transform.position = new Vector3(-(ScreenWidth / 2), 0);
+        LeftWall.tag = "LeftWall";
 
         RightWall.transform.localScale = new Vector3(0.01f, (float)ScreenHeight * 2);
         RightWall.transform.position = new Vector3(ScreenWidth / 2, 0);
+        RightWall.tag = "RightWall";
 
         Floor.transform.localScale = new Vector3((float)ScreenWidth, 1);
         Floor.transform.position = new Vector3(cam.transform.position.x, -((float)(ScreenHeight - 1.1)));

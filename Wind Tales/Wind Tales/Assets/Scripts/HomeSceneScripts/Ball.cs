@@ -5,8 +5,8 @@ using UnityEngine;
 public class Ball : MonoBehaviour {
 
     private Rigidbody2D BallObject;
-    public int MinForce = 500;
-    public int MaxForce = 1000;
+    public int MinForce = 100;
+    public int MaxForce = 150;
 	// Use this for initialization
 	void Start () {
         BallObject = gameObject.GetComponent<Rigidbody2D>();

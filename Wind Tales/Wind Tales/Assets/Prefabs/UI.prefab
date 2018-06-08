@@ -993,6 +993,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 1376046055069474}
+  maxValue: 100
+  defaultValue: 80
+  minutesPerValue: 10
 --- !u!114 &114370057938205482
 MonoBehaviour:
   m_ObjectHideFlags: 1
