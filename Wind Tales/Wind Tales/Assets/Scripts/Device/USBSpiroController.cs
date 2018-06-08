@@ -13,7 +13,7 @@ using System;
 public class USBSpiroController : SpiroController
 {
 
-    private string portName = "COM3";
+    private string portName = "COM17";
     private SerialPort port;
     private Thread myThread;
 
