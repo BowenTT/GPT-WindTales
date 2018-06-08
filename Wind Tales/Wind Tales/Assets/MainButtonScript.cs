@@ -1,10 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class MainButtonScript : MonoBehaviour
 {
@@ -29,9 +27,13 @@ public class MainButtonScript : MonoBehaviour
 	[SerializeField]
 	private GameObject loadingScreen;
 
-	void Start()
+	private void Start()
 	{
+		if (notification)
+		{
+			StartCoroutine(AnimateExclamation());
 
+		}
 	}
 
 	void Update()
@@ -49,27 +51,66 @@ public class MainButtonScript : MonoBehaviour
 		if (notification != notificationObject.activeSelf)
 		{
 			notificationObject.SetActive(notification);
+			if (notification)
+			{
+				StartCoroutine(AnimateExclamation());
+
+			}
 		}
 	}
 
 	public void OnClick()
 	{
-		Debug.Log("YOYOYO");
-		StartCoroutine(SwitchScene());
+		Debug.Log("Lets switch");
+		StartCoroutine(SwitchScene(scene));
 	}
 
-	private IEnumerator SwitchScene()
+	private IEnumerator SwitchScene(string name)
 	{
 		loadingScreen.SetActive(true);
 		var image = loadingScreen.GetComponent<Image>();
+		var scene = SceneManager.LoadSceneAsync(name, LoadSceneMode.Single);
+		scene.allowSceneActivation = false;
 
+		image.color = new Color(0, 0, 0, 0);
 		while (image.color.a < 1)
 		{
-			Debug.Log("SHIIIET");
-			image.color += new Color(0, 0, 0, 0.02f);
+			image.color += new Color(0, 0, 0, 0.04f);
 			yield return null;
-
 		}
+		while (scene.progress < 0.9f)
+		{
+			yield return null;
+		}
+		scene.allowSceneActivation = true;
 
+	}
+
+	private IEnumerator AnimateExclamation()
+	{
+		//This will make the animation play for 1 second
+		while (notification)
+		{
+			for (int i = 0; i < 15; i++)
+			{
+				notificationObject.transform.localScale += new Vector3(0.03f, 0.03f, 0);
+				yield return ExecuteAfterTime(0.05f);
+
+			}
+
+			for (int i = 0; i < 15; i++)
+			{
+				notificationObject.transform.localScale -= new Vector3(0.03f, 0.03f, 0);
+				yield return ExecuteAfterTime(0.05f);
+
+			}
+		}
+	}
+
+	IEnumerator ExecuteAfterTime(float time)
+	{
+		yield return new WaitForSeconds(time);
+
+		// Code to execute after the delay
 	}
 }
