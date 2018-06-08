@@ -8,7 +8,7 @@ public class Coin : MonoBehaviour {
     public int vacuumDirection = 1;
     public bool loseVacuumEffect = true;
 
-    public GameObject soundObject;
+    public GameObject[] soundObject;
 
     private Transform trans;
     private Transform vacuumTransform;
@@ -77,7 +77,7 @@ public class Coin : MonoBehaviour {
 
     public void PlaySound()
     {
-        GameObject sound = (GameObject)Instantiate(soundObject, this.transform.position, this.transform.rotation);
+        GameObject sound = (GameObject)Instantiate(soundObject[Random.Range(0, soundObject.Length)], this.transform.position, this.transform.rotation);
         Destroy(sound, 2f);
     }
 }
