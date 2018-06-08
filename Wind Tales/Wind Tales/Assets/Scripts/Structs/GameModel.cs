@@ -30,6 +30,12 @@ namespace Application
 		{
 			SetFloat("Happiness", value);
 		}
+		public static void AddHappiness(float value)
+		{
+			var temp = GetHappiness();
+			temp = Mathf.Clamp(temp + value, 0f, 100f);
+			SetHappiness(temp);
+		}
 
 		public static float GetHappiness()
 		{
@@ -41,14 +47,30 @@ namespace Application
 			SetFloat("Cleanliness", value);
 		}
 
+		public static void AddCleanliness(float value)
+		{
+			var temp = GetCleanliness();
+			temp = Mathf.Clamp(temp + value, 0f, 100f);
+			SetCleanliness(temp);
+		}
+
+
 		public static float GetCleanliness()
 		{
 			return GetFloat("Cleanliness");
 		}
 
+
 		public static void SetCleanlinessRoom(float value)
 		{
 			SetFloat("CleanlinessRoom", value);
+		}
+
+		public static void AddCleanlinessRoom(float value)
+		{
+			var temp = GetCleanlinessRoom();
+			temp = Mathf.Clamp(temp + value, 0f, 100f);
+			SetCleanlinessRoom(temp);
 		}
 
 		public static float GetCleanlinessRoom()
@@ -61,15 +83,23 @@ namespace Application
 			SetFloat("Hunger", value);
 		}
 
+		public static void AddHunger(float value)
+		{
+			var temp = GetHunger();
+			temp = Mathf.Clamp(temp + value, 0f, 100f);
+			SetHunger(temp);
+		}
+
 		public static float GetHunger()
 		{
 			return GetFloat("Hunger");
 		}
 
-		//public static DateTime GetLastLogin()
-		//{
-		//	return (DateTime)PlayerPrefs.GetString("LastLogin");
-		//}
+		public static DateTime GetLastLogin()
+		{
+			Debug.Log(PlayerPrefs.GetString("LastLogin"));
+			return Convert.ToDateTime(PlayerPrefs.GetString("LastLogin"));
+		}
 
 		public static void SetLastLogin(DateTime value)
 		{
@@ -81,14 +111,29 @@ namespace Application
 			SetFloat("BreathTimeFood", value);
 		}
 
+		public static void AddBreathTimeFood(float value)
+		{
+			var temp = GetBreathTimeFood();
+			temp = Mathf.Clamp(temp + value, 0f, 100f);
+			SetBreathTimeFood(temp);
+		}
+
 		public static float GetBreathTimeFood()
 		{
 			return GetFloat("BreathTimeFood");
 		}
 
+
 		public static void SetBreathStrengthFlappyBird(float value)
 		{
 			SetFloat("BreathStrengthFlappyBird", value);
+		}
+
+		public static void AddBreathStrngthFlappyBird(float value)
+		{
+			var temp = GetBreathStrengthFlappyBird();
+			temp = Mathf.Clamp(temp + value, 0f, 100f);
+			SetBreathStrengthFlappyBird(temp);
 		}
 
 		public static float GetBreathStrengthFlappyBird()
