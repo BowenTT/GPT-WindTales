@@ -22,6 +22,16 @@ public class Animal : MonoBehaviour {
         Camera.main.orthographicSize = Canvas.transform.position.y;
     }
 
+    private void OnEnable()
+    {
+        EventManager.coinUpdateEvent += EventNotifier;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.coinUpdateEvent -= EventNotifier;
+    }
+
     void Update()
     {
         trans.position = Vector2.Lerp(trans.position, targetPosition, Time.deltaTime * speed);
@@ -41,12 +51,16 @@ public class Animal : MonoBehaviour {
 
         if (other.tag == "Coin")
         {
-            Destroy(other.gameObject);
             if (other.gameObject.GetComponent<Coin>().isSelected)
             {
                 score++;
                 scoreText.text = score.ToString();
+                EventManager.CoinUpdate();
+                EventNotifier();
+                Destroy(other.gameObject);
             }
         }
     }
+
+    private void EventNotifier() { }
 }

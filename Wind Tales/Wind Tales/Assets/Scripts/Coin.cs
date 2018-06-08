@@ -8,6 +8,8 @@ public class Coin : MonoBehaviour {
     public int vacuumDirection = 1;
     public bool loseVacuumEffect = true;
 
+    public GameObject soundObject;
+
     private Transform trans;
     private Transform vacuumTransform;
     private Rigidbody coinRigidbody;
@@ -22,10 +24,19 @@ public class Coin : MonoBehaviour {
         coinRigidbody.AddForce(this.transform.forward * 10, ForceMode.Force);
     }
 
+    void OnEnable()
+    {
+        EventManager.coinUpdateEvent += PlaySound;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.coinUpdateEvent -= PlaySound;
+    }
+
     void Update()
     {
         vacuumStrength = Input.GetAxis("Player_SimulateBreathing");
-        Debug.Log(vacuumStrength);
     }
 
     void FixedUpdate()
@@ -62,5 +73,11 @@ public class Coin : MonoBehaviour {
         {
             inRange = false;
         }
+    }
+
+    public void PlaySound()
+    {
+        GameObject sound = (GameObject)Instantiate(soundObject, this.transform.position, this.transform.rotation);
+        Destroy(sound, 2f);
     }
 }
