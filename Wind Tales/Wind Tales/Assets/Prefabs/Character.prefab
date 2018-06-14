@@ -112,6 +112,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upForce: 250
+  audioC:
+  - {fileID: 8300000, guid: b5b1b974876e29d4ba530e60446039ae, type: 3}
+  - {fileID: 8300000, guid: f34da21e91b0f4d4baeb7817de39e138, type: 3}
+  audio: {fileID: 0}
 --- !u!212 &212623177652710958
 SpriteRenderer:
   m_ObjectHideFlags: 1

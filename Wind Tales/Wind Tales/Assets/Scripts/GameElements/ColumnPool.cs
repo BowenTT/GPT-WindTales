@@ -14,6 +14,7 @@ public class ColumnPool : MonoBehaviour
     public float BlockingColumnSpawn = 3f; //How quickly Blocking columns spawn.
     public float BlowingMinimum = 0; //You set the minimum blowing requiremnets for this game. 
     private GameControl games;
+   
 
     private List<GameObject> columns = new List<GameObject>(); //Collection of pooled columns.
     private int currentColumn; //Index of the current column in the collection.
@@ -50,8 +51,9 @@ public class ColumnPool : MonoBehaviour
     {
         timeSinceLastSpawned += Time.deltaTime;
         timeSinceLastSpawnedBlockage += Time.deltaTime;
-        if (Input.GetAxis("Player_SimulateBreathing") >= 0.3 || Input.GetKey("q"))
+        if (Input.GetAxis("Player_SimulateBreathing") >= BlowingMinimum || Input.GetKey("q"))
         {
+            columns[games.score % Convert.ToInt32(columnPoolSize)].GetComponent<Column>().ExhaleBreath.SetActive(false);
             var blockage = columns[games.score %Convert.ToInt32(columnPoolSize)].GetComponent<Column>().Blockage;
             blockage.SetActive(false);
         }
@@ -72,6 +74,7 @@ public class ColumnPool : MonoBehaviour
                 {
                     timeSinceLastSpawnedBlockage = 0f;
                     columns[currentColumn].GetComponent<Column>().Blockage.SetActive(true);
+                    columns[currentColumn].GetComponent<Column>().ExhaleBreath.SetActive(true);
                 }
                 currentColumn++;
                 if (currentColumn >= columnPoolSize)
