@@ -2,64 +2,82 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EatingGameController : MonoBehaviour {
+public class EatingGameController : MonoBehaviour
+{
 
-    public static int gameStatus = 0;                       //This will determine in what stage of the exercise we are.
-    public static int currentHunger = 10;                         //This will eventually determine wether the gamestatus will be updated to start the food minigame.
-    private float breathingTime = 0;
-    private FurnaceTrigger furnaceTrigger;
-    
+	public static int gameStatus = 0;                       //This will determine in what stage of the exercise we are.
+	public static int currentHunger = 10;                         //This will eventually determine wether the gamestatus will be updated to start the food minigame.
+	private float breathingTime;
+    public float breathingTimeNeeded = 3;
+    public float minimumBreathingStrength = 1;
+	private FurnaceTrigger furnaceTrigger;
+	public GameObject Camera;
+	public GameObject Canvas;
+    public GameObject Chicken;
 
-    // Use this for initialization
-    void Start () {
-        
+	// Use this for initialization
+	void Start()
+	{
+		gameStatus = 0;
+		
 
-        //This method will eventually be placed in the update
-        if (isPetHungry())
+		Camera.transform.position = Canvas.transform.position;
+		Camera.GetComponent<Camera>().orthographicSize = Canvas.transform.position.y;
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+        if (isPetHungry() && gameStatus == 0)
         {
             gameStatus = 1;
+
         }
-    }
-	
-	// Update is called once per frame
-	void Update () {
-       if(gameStatus == 3)
+        if (gameStatus == 3)
+		{
+
+            //float input = Input.GetAxis("Player_SimulateBreathing");
+            float input = (float) - DeviceManager.Instance.FlowLMin;
+            Debug.Log(input);
+			UpdateState(input);
+		}
+        else if(currentHunger >= 75)
         {
-            float input = Input.GetAxis("Player_SimulateBreathing");
-            UpdateState(input);
+            Chicken.SetActive(false);
         }
 	}
 
-    private bool isPetHungry()
-    {
-        if(currentHunger <= 20)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+	private bool isPetHungry()
+	{
+		if (currentHunger <= 20)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
-    private void UpdateState(float input)
-    {
-        if(input > 0)
-        {
-            breathingTime += Time.deltaTime;
-            //Debug.Log(breathingTime);
-            if (breathingTime >= 5)
-            {
-                gameStatus = 4;
-                Debug.Log("Exercise is done");
-            }
-        }
-        else if (input <= 0)
-        {
-            breathingTime = 0;
-            Debug.Log("Input is <= 0");
-        }
-    }
+	private void UpdateState(float input)
+	{
+		if (input > 0)
+		{
+			breathingTime += Time.deltaTime;
+			Debug.Log(breathingTime);
+			if (breathingTime >= 3 && minimumBreathingStrength >= 1)
+			{
+				gameStatus = 4;
+
+				Debug.Log("Exercise is done");
+			}
+		}
+		else if (input <= 0)
+		{
+			breathingTime = 0;
+			Debug.Log("Input is <= 0");
+		}
+	}
 
 
 
