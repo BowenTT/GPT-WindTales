@@ -27,11 +27,13 @@ public class ColumnPool : MonoBehaviour
 
     void Start()
     {
+
         for (var i = 0; i < columnPoolSize; i++)
         {
             columns.Add((GameObject) Instantiate(columnPrefab, objectPoolPosition, Quaternion.identity));
         }
         games = GetComponent<GameControl>();
+        games.Blowingminimum = BlowingMinimum;
         timeSinceLastSpawned = 0f;
         BlockingColumnSpawn = 0f;
     }

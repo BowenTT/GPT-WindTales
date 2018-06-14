@@ -17,7 +17,7 @@ public class GameControl : MonoBehaviour
     public List<AudioClip> Bumps;
     private AudioSource audio;
     private AudioClip Clip;
-
+    public float Blowingminimum;
 
     public bool GameOver { get { return gameOver; } }
 
