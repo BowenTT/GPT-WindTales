@@ -27,7 +27,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1713052816779734
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,16 +241,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   framesPerImage: 80
   repeatDuration: 60
-  inhale1: {fileID: 21300000, guid: 68fd3fbbbc0ef02418fabc5ff8905867, type: 3}
-  inhale2: {fileID: 21300000, guid: 9291fa67dcee0494ab0c389fcb02145a, type: 3}
-  inhale3: {fileID: 21300000, guid: 600f2299a1f89b440b68123db853b9dc, type: 3}
-  inhale4: {fileID: 21300000, guid: f3da32f6ae9e6d94a8a54951840e036c, type: 3}
-  inhale5: {fileID: 21300000, guid: cff0a19869de8344bab92d674f13df8b, type: 3}
-  inhale6: {fileID: 21300000, guid: 67c5fbe2aac4bc94e9e2e38e8b15a860, type: 3}
-  airFlow1: {fileID: 21300000, guid: b659dd840ba89df49829d272199d09ff, type: 3}
-  airFlow2: {fileID: 21300000, guid: aab1781b8d2e7bd49975c0bd1bd36f15, type: 3}
-  airFlow3: {fileID: 21300000, guid: b5a2a11559730194fabdac7d5c5f6812, type: 3}
-  airFlow4: {fileID: 21300000, guid: d3e9fa0ed2be9da4ebdcc9d8c1247cf0, type: 3}
+  inhale1: {fileID: 21300000, guid: 7305c3c668bfd5c40b5d79dafcfe71ab, type: 3}
+  inhale2: {fileID: 21300000, guid: dada445915f684f4bb673bf43e9c589d, type: 3}
+  inhale3: {fileID: 21300000, guid: 372cf6913ba810946b313ac44e4e99ae, type: 3}
+  inhale4: {fileID: 21300000, guid: cf727316490e2474bbb169017c4e8f11, type: 3}
+  inhale5: {fileID: 21300000, guid: f7c838ef927b1b04eb5d209d6032fc43, type: 3}
+  inhale6: {fileID: 21300000, guid: 31f80690844a6ff418413332832da0f2, type: 3}
+  airFlow1: {fileID: 21300000, guid: 68e6ef72a706c9047a89b38d24b46625, type: 3}
+  airFlow2: {fileID: 21300000, guid: 28613cf15fb2c6842b1aa925d60cb685, type: 3}
+  airFlow3: {fileID: 21300000, guid: 336a677eaf6925d4b9acad4b5ffc9d32, type: 3}
+  airFlow4: {fileID: 21300000, guid: e86b5cf5b9e4cad4ca59c68fcd367233, type: 3}
   imgChar: {fileID: 114169191228229016}
   ImgAir: {fileID: 114472252807141624}
   audio: {fileID: 8300000, guid: fcf601f5b99036d468ad32863a2c40b7, type: 3}

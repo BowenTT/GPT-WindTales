@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -119,7 +119,6 @@ public class NPCMovement : MonoBehaviour {
             transform.position += new Vector3(1, 0.4f, 0f) * 2 * 2 * Time.deltaTime;
         }
 
-
     }
 
 	private void OnCollisionEnter2D(Collision2D collision)
@@ -185,4 +184,3 @@ private bool RolledOver()
         return (transform.position.y > HeightOfFloor);
     }
 }
-

@@ -7,13 +7,16 @@ public class PlayerTrigger : MonoBehaviour
 {
 
 	public GameObject HungryImage;
+    public Vector3 TablePosition;      //Make a new vector at the position of the table in the scene.
+    public GameObject Table;
+    private Vector3 spriteLocation;
+    public AudioClip Clip;
+    public AudioSource Audio;
 
-	private Vector3 spriteLocation;
-
-	// Use this for initialization
-	void Start()
+    // Use this for initialization
+    void Start()
 	{
-
+        TablePosition = Table.transform.position;
 	}
 
 	// Update is called once per frame
@@ -33,15 +36,25 @@ public class PlayerTrigger : MonoBehaviour
 	{
 
 		//Check if the tag of the trigger collided with is Food
-		if (other.tag == "Food" && EatingGameController.gameStatus == 1)
+		if (other.tag == "Food" && EatingGameController.gameStatus == 5)
 		{
-			EatingGameController.gameStatus = 5;
 
-			other.gameObject.SetActive(false);
+            EatingGameController.currentHunger += 25;
+            Audio.PlayOneShot(Clip);
+            if (EatingGameController.currentHunger >= 80)
+            {
+                EatingGameController.gameStatus = 0;
+                other.gameObject.SetActive(false);
+            }
+            else if(EatingGameController.currentHunger < 90)
+            {
+                EatingGameController.gameStatus = 1;
+                other.gameObject.SetActive(true);
+            }
 
 
 
-			EatingGameController.currentHunger += 25;
+
 		}
 
 	}

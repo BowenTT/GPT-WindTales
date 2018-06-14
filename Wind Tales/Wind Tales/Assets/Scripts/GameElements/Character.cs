@@ -1,45 +1,48 @@
-﻿using UnityEngine;
-using UnityEngine.Experimental.UIElements;
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.Playables;
+using UnityEngine.UI;
 
-public class Character: MonoBehaviour
+public class Character : MonoBehaviour 
 {
+	public float upForce;					//Upward force of the "flap".
+	private bool isDead = false;			//Has the player collided with a wall?
+    public List<AudioClip> audioC;
+    private AudioSource audio;
+    private AudioClip Clip;
 
-    public float upForce;                   //Upward force of the "flap".
-    private bool isDead = false;            //Has the player collided with a wall?
 
-    private Animator anim;                  //Reference to the Animator component.
-    private Rigidbody2D rb2d;               //Holds a reference to the Rigidbody2D component of the bird.
+    private Rigidbody2D rb2d;				//Holds a reference to the Rigidbody2D component of the bird.
 
-    void Start()
-    {
-        //Get reference to the Animator component attached to this GameObject.
-        anim = GetComponent<Animator>();
-        //Get and store a reference to the Rigidbody2D attached to this GameObject.
+	void Start()
+	{
+	    audio = GetComponent<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
-    }
+	}
 
-    void Update()
-    {
-        //Don't allow control if the bird has died.
-        if (isDead == false)
-        {
-            if (Input.GetKey("w"))
-            {
-                //...zero out the birds current y velocity before...
+	void Update()
+	{
+	    if (isDead == false)
+		{
+		    if (Input.GetKey("w"))
+		    {
                 rb2d.velocity = Vector2.zero;
-              
-                rb2d.AddForce(new Vector2(0, upForce));
-            }
-        }
-    }
+				rb2d.AddForce(new Vector2(0, upForce));
+                int bumpsaudio = Random.Range(0, audioC.Count);
+		        Clip = audioC[bumpsaudio];
+		        if (!audio.isPlaying)
+		        {
+		            audio.PlayOneShot(Clip);
+                }
+			}
+		}
+	}
 
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        // Zero out the bird's velocity
-        rb2d.velocity = Vector2.zero;
-        // If the bird collides with something set it to dead...
-        isDead = true;
-        //...and tell the game control about it.
-        GameControl.instance.BirdDied();
-    }
+	void OnCollisionEnter2D(Collision2D other)
+	{
+		rb2d.velocity = Vector2.zero;
+		isDead = true;
+		GameControl.instance.BirdDied ();
+	}
 }
