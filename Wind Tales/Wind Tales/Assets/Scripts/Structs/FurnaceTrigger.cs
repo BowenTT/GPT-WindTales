@@ -12,7 +12,8 @@ public class FurnaceTrigger : MonoBehaviour
 	public Sprite UncookedChicken;
 	public Vector3 TablePosition;      //Make a new vector at the position of the table in the scene.
 	public GameObject Table;
-    
+    public AudioClip Clip;
+    public AudioSource Audio;
 
 	IEnumerator ExecuteAfterTime(float time)
 	{
@@ -67,7 +68,8 @@ public class FurnaceTrigger : MonoBehaviour
 			//Start the oven animation
 			StartCoroutine(animateOven());
 
-			Debug.Log("Food Has Entered");
+           
+            Debug.Log("Food Has Entered");
 		}
 
 	}
@@ -88,10 +90,12 @@ public class FurnaceTrigger : MonoBehaviour
 				yield return ExecuteAfterTime(0.1f);
 
 			}
+            
+            
 			//Once the animation is finished move the chicken to the table.
 			MoveChicken();
 
-
+            Audio.PlayOneShot(Clip);
         }
 	}
 
