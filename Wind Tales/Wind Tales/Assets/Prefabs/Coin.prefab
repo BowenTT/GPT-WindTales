@@ -77,6 +77,11 @@ MonoBehaviour:
   distanceStrength: 100
   vacuumDirection: 1
   loseVacuumEffect: 0
+  soundObject:
+  - {fileID: 1444657188702398, guid: 4cf791bb222d34944b85992b59a693fe, type: 2}
+  - {fileID: 1713652566819698, guid: 01856269c78ca52419f1628216f4fd4e, type: 2}
+  - {fileID: 1254349416266720, guid: d63ad7fc8da375449bee302163349d09, type: 2}
+  - {fileID: 1810524801107590, guid: baef60269828f804c8d3d7e56e536cac, type: 2}
   isSelected: 0
 --- !u!114 &114931342020966118
 MonoBehaviour:

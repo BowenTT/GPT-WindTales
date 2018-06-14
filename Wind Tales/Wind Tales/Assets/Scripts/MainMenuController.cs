@@ -45,9 +45,7 @@ public class MainMenuController : MonoBehaviour
 			var login = GameModel.GetLastLogin();
 			var current = DateTime.Now;
 			var diff = current - login;
-			Debug.Log("Diff is " + diff.TotalMinutes);
 			var addvalue = (float)diff.TotalMinutes / minutesPerValue;
-			Debug.Log("Add is " + addvalue);
 			GameModel.AddHunger(addvalue);
 			GameModel.AddHappiness(-addvalue);
 			GameModel.AddCleanliness(-addvalue);
@@ -57,7 +55,6 @@ public class MainMenuController : MonoBehaviour
 		catch (FormatException)
 		{
 			//no date saved set default values
-			Debug.Log("It's my first time!");
 			GameModel.SetLastLogin(DateTime.Now);
 			GameModel.SetHunger(defaultValue);
 			GameModel.SetCleanliness(defaultValue);

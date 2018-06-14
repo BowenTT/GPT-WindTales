@@ -7,6 +7,9 @@ public class Coin : MonoBehaviour {
     public float distanceStrength = 0f;
     public int vacuumDirection = 1;
     public bool loseVacuumEffect = true;
+    public float diffucltyLevel = 75f;
+
+    public GameObject[] soundObject;
 
     private Transform trans;
     private Transform vacuumTransform;
@@ -22,9 +25,21 @@ public class Coin : MonoBehaviour {
         coinRigidbody.AddForce(this.transform.forward * 10, ForceMode.Force);
     }
 
+    void OnEnable()
+    {
+        EventManager.coinUpdateEvent += PlaySound;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.coinUpdateEvent -= PlaySound;
+    }
+
     void Update()
     {
-        vacuumStrength = Input.GetAxis("Player_SimulateBreathing");
+       vacuumStrength = Input.GetAxis("Player_SimulateBreathing");// ==> for Xbox controller
+       // vacuumStrength = (DeviceManager.Instance.CurrentFlowPercentage / diffucltyLevel);
+        
         Debug.Log(vacuumStrength);
     }
 
@@ -62,5 +77,11 @@ public class Coin : MonoBehaviour {
         {
             inRange = false;
         }
+    }
+
+    public void PlaySound()
+    {
+        GameObject sound = (GameObject)Instantiate(soundObject[Random.Range(0, soundObject.Length)], this.transform.position, this.transform.rotation);
+        Destroy(sound, 2f);
     }
 }
