@@ -12,6 +12,7 @@ public class FurnaceTrigger : MonoBehaviour
 	public Sprite UncookedChicken;
 	public Vector3 TablePosition;      //Make a new vector at the position of the table in the scene.
 	public GameObject Table;
+    
 
 	IEnumerator ExecuteAfterTime(float time)
 	{
@@ -36,10 +37,11 @@ public class FurnaceTrigger : MonoBehaviour
 			//Change chicken sprite for a sprite that is not "hot" after the exercise
 			ImageUncookedChicken.sprite = UncookedChicken;
 
-			EatingGameController.gameStatus = 1;
+            //enable drag and drop script
+            Chicken.GetComponent<DragAndDrop>().enabled = true; //remove drag and drop script from chicken
 
-
-		}
+            EatingGameController.gameStatus = 5;
+        }
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
@@ -57,10 +59,10 @@ public class FurnaceTrigger : MonoBehaviour
 			//Save the current object in an object named chicken
 			Chicken = other.gameObject;
 
+            Chicken.GetComponent<DragAndDrop>().enabled = false; //disable drag and drop script
 
-
-			//Disable the current chicken object
-			other.gameObject.SetActive(false);
+            //Disable the current chicken object
+            other.gameObject.SetActive(false);
 
 			//Start the oven animation
 			StartCoroutine(animateOven());
@@ -88,7 +90,9 @@ public class FurnaceTrigger : MonoBehaviour
 			}
 			//Once the animation is finished move the chicken to the table.
 			MoveChicken();
-		}
+
+
+        }
 	}
 
 
@@ -105,16 +109,20 @@ public class FurnaceTrigger : MonoBehaviour
 			//Change the chicken sprite to the Cooked chicken sprite.
 			ImageCookedChicken.sprite = CookedChicken;
 
-			//Add script to new chicken object
-			Chicken.AddComponent<MouseControl>();
+
+		
 
 			//Make the chicken visible
 			Chicken.SetActive(true);
 			Debug.Log("Chicken has been cooked");
 
-			//Set gamestatus to 3 to continue to the exercise.
-			//Also due to changing the gamestatus the chicken is no longer moveable.
-			EatingGameController.gameStatus = 3;
+
+
+            //Set gamestatus to 3 to continue to the exercise.
+            //Also due to changing the gamestatus the chicken is no longer moveable.
+            EatingGameController.gameStatus = 3;
+
+
 
 		}
 
