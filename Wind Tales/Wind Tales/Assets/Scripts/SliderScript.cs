@@ -6,11 +6,13 @@ using UnityEngine.UI;
 public class SliderScript : MonoBehaviour {
 
 	public Slider slider;
+    public static GameControl games;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
 	{
-		
+	    games = GetComponent<GameControl>();
+	    slider = GetComponent<Slider>();
 	}
 	
 	// Update is called once per frame
