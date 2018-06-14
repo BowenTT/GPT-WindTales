@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,10 +19,6 @@ public class NPCMovement : MonoBehaviour {
     [SerializeField]
     private float HopHeight = 0.01f;
 
-    private int directionToMove = 0;
-    private int maxDirections = 3;
-    private float Direction;
-    private float HeightOfFloor = -2.5f;
 
     [SerializeField]
     private bool CollidingWithWall = false;
@@ -33,9 +29,18 @@ public class NPCMovement : MonoBehaviour {
 
     public int MinForce = 100;
     public int MaxForce = 150;
+
+
+    private int directionToMove = 0;
+    private int maxDirections = 3;
+    private float Direction;
+    private float HeightOfFloor = -2.5f;
+    private Rigidbody2D PetRigidBody;
+
     void Start()
     {
         ChangeDirection(Random.Range(0,2));
+        PetRigidBody = gameObject.GetComponent<Rigidbody2D>();
     }
 
     float ChangeDirection(int movement)
@@ -57,7 +62,7 @@ public class NPCMovement : MonoBehaviour {
     {
         directionChangeTime -= Time.deltaTime;
         movementTime -= Time.deltaTime;
-      
+
 
         if (directionChangeTime <= 0)
         {
@@ -66,7 +71,7 @@ public class NPCMovement : MonoBehaviour {
                 if (RolledOver())
                 {
                     Debug.Log("Rolled over");
-                    ResetPetRotation();
+                    StartCoroutine(ResetPetPosition());
                     movementTime = -1;
                 }
                 else
@@ -96,8 +101,8 @@ public class NPCMovement : MonoBehaviour {
             RightWall = false;
             directionChangeTime = Random.Range(minTimeToChangeDirection, maxTimeToChangeDirection);
         }
-    Vector3 oPos = transform.position;
-    if (movementTime >= 0)
+        Vector3 oPos = transform.position;
+        if (movementTime >= 0 && (Direction > 0f || Direction < 0f))
     {
         transform.position = new Vector3(oPos.x + Direction, oPos.y + HopHeight, oPos.z);
     }
@@ -113,7 +118,6 @@ public class NPCMovement : MonoBehaviour {
         {
             transform.position += new Vector3(1, 0.4f, 0f) * 2 * 2 * Time.deltaTime;
         }
-
 
     }
 
@@ -147,15 +151,32 @@ private bool RolledOver()
         return (transform.eulerAngles.z > 10 || transform.eulerAngles.z < -10);
     }
 
-    private void ResetPetRotation()
+    //private void ResetPetRotation()
+    //{
+    //    float axisHorizontal = Input.GetAxisRaw("Horizontal");
+    //    float axisVertical = Input.GetAxisRaw("Vertical");
+    //    transform.position = new Vector3(transform.position.x, HeightOfFloor, transform.position.z);
+    //    transform.rotation = Quaternion.identity;
+    //    axisHorizontal = 0;
+    //    axisVertical = 0;
+
+    //}
+
+    IEnumerator ResetPetPosition()
     {
+        yield return new WaitForSeconds(5f);
+        if (PetRigidBody == null)
+        {
+            PetRigidBody = gameObject.GetComponent<Rigidbody2D>();
+        }
+        PetRigidBody.velocity = Vector3.zero;
+        PetRigidBody.angularVelocity = 0f;
         float axisHorizontal = Input.GetAxisRaw("Horizontal");
         float axisVertical = Input.GetAxisRaw("Vertical");
         transform.position = new Vector3(transform.position.x, HeightOfFloor, transform.position.z);
         transform.rotation = Quaternion.identity;
         axisHorizontal = 0;
         axisVertical = 0;
-
     }
 
     private bool isFlying()
@@ -163,4 +184,3 @@ private bool RolledOver()
         return (transform.position.y > HeightOfFloor);
     }
 }
-
