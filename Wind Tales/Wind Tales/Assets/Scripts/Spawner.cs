@@ -19,39 +19,26 @@ public class Spawner : MonoBehaviour {
     private bool spawnerON = true;
     private int spawnedItems;
 
-	void Start ()
-    {
-        #region Old Code
-        //for (int i = 0; i < 10; i++)
-        //{
-        //    Vector2 mousePosition = Input.mousePosition;
-
-        //    Vector2 spawnPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        //    Instantiate(spawnItem, mousePosition, Quaternion.identity, spawnArea.transform);
-        //}
-        #endregion
-    }
-
     void Update ()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    spawnerON = !spawnerON;
-        //}
-
         if (countDown <= 0f && spawnerON && spawnedItems <= totalItems)
         {
             spawnPosition.x = Random.Range(0, maxX);
             spawnPosition.y = Random.Range(0, maxY);
             int arrayIndex = Random.Range(0, sprites.Length);
             Sprite sprite = sprites[arrayIndex];
-            GameObject item = Instantiate(spawnItem, spawnPosition, Quaternion.identity, spawnArea.transform);
+            Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), 100));
+            GameObject item = Instantiate(spawnItem, screenPosition, Quaternion.identity, spawnArea.transform);
             item.GetComponent<Image>().sprite = sprite;
             countDown = spawnRate;
             spawnedItems++;
             return;
         }
         countDown -= Time.deltaTime;
+
+
+
+
+
     }
 }

@@ -7,6 +7,7 @@ public class Coin : MonoBehaviour {
     public float distanceStrength = 0f;
     public int vacuumDirection = 1;
     public bool loseVacuumEffect = true;
+    public float diffucltyLevel = 75f;
 
     public GameObject[] soundObject;
 
@@ -36,7 +37,10 @@ public class Coin : MonoBehaviour {
 
     void Update()
     {
-        vacuumStrength = Input.GetAxis("Player_SimulateBreathing");
+        //vacuumStrength = Input.GetAxis("Player_SimulateBreathing"); ==> for Xbox controller
+        vacuumStrength = (DeviceManager.Instance.CurrentFlowPercentage / diffucltyLevel);
+        
+        Debug.Log(vacuumStrength);
     }
 
     void FixedUpdate()

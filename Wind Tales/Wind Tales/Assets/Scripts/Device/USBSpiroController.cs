@@ -109,13 +109,12 @@ public class USBSpiroController : SpiroController
                     string indata = port.ReadLine();
                     string[] data = indata.Split(new[] { ';' });
 
-                    //Debug.Log(indata);
 
                     try
-                    {
+                    {   
                         cleanFlow = Convert.ToDouble(data[0]);
                         flow = cleanFlow * flowMultiplier;
-						DeviceManager.Instance.FlowLMin = (flow / 78.123f);
+                        DeviceManager.Instance.FlowLMin = (flow / 78.123f);
                     }
                     catch (FormatException ex)
                     {
