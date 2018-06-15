@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -17,10 +17,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/KitingScene.unity
     guid: 83c8b8b8971502f48987ced81747642a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Flaapbird.unity
     guid: 9ac1c55b57ce84298803d149f3b89d9d
   - enabled: 1
     path: Assets/Scenes/VacuumCleaner.unity
     guid: 7a00de5fcf7b3624492973498dea5bc1
+  - enabled: 1
+    path: Assets/Scenes/HomeScene.unity
+    guid: ff54dcc57791741ca8b563c15f1b6248
   m_configObjects: {}

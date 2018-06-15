@@ -749,6 +749,7 @@ MonoBehaviour:
   wetOverlay2: {fileID: 21300000, guid: 6bc52c514c264a64e89f037631d5b0c4, type: 3}
   wetOverlay3: {fileID: 21300000, guid: 333aea47bcb5a00489e95ac3981b2cd1, type: 3}
   wetOverlay: {fileID: 606130106}
+  minInput: 5
 --- !u!50 &1255595814
 Rigidbody2D:
   serializedVersion: 4
@@ -1020,7 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 259e4954bb3c7fa42b70081c960757b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deviceType: 1
+  deviceType: 2
   writeDeviceLog: 0
   deviceLog: {fileID: 0}
 --- !u!4 &2079902511
