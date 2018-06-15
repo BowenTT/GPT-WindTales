@@ -35,7 +35,7 @@ public class CleanPet : MonoBehaviour
     {
         GameModel.SetCleanliness(350f); // temp until script doses this when game is started
         MaxFilth = filthyness;
-        currentFilth = GameModel.GetCleanliness();
+        currentFilth = 100;
         maxFlow = MaxFlow;
         Debug.Log(MaxFilth);
         Debug.Log(maxFlow);

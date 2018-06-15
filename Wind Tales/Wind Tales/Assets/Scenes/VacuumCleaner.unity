@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa7c5a44901ecf4f813a2cd16615d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 800, y: 125}
+  direction: {x: 1550, y: 250}
 --- !u!1 &292740983
 GameObject:
   m_ObjectHideFlags: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa7c5a44901ecf4f813a2cd16615d2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: -100, y: 125}
+  direction: {x: 0, y: 250}
 --- !u!224 &478326277 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224839310558841886, guid: 14b4134d4c190db4aa49f5d1518a76ea,
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 696faeb0bf8b34c42b0ed1d4d68529e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetPosition: {x: 0, y: 125}
+  targetPosition: {x: 0, y: 250}
   score: 0
   scoreText: {fileID: 1003566309}
   speed: 1.75

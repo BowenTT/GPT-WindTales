@@ -25,7 +25,7 @@ public class Character : MonoBehaviour
 	{
 	    if (isDead == false)
 		{
-		    if (Input.GetKey("w"))
+		    if (Input.GetKey("space"))
 		    {
                 rb2d.velocity = Vector2.zero;
 				rb2d.AddForce(new Vector2(0, upForce));

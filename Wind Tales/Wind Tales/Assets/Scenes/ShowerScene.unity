@@ -551,7 +551,7 @@ RectTransform:
   m_GameObject: {fileID: 1215912358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 283621464}
   m_RootOrder: 2
@@ -659,7 +659,7 @@ RectTransform:
   m_GameObject: {fileID: 1255595808}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 606130105}
   m_Father: {fileID: 283621464}
@@ -739,12 +739,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3abe8ede0c9b1484f90d57dfd5307049, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filthyness: 400
-  MaxFlow: 1
+  filthyness: 100
+  MaxFlow: 100
   filth3: {fileID: 21300000, guid: 679d9b5cb00321c4faa835b4dd4ef1b9, type: 3}
   filth2: {fileID: 21300000, guid: 9906ffd202c3bb947ba84e5f522a3851, type: 3}
   filth1: {fileID: 21300000, guid: c6f50c8fa2711f7469ff3877f0b63cf4, type: 3}
-  clean: {fileID: 21300000, guid: 48ec55c01c662b749bb5bb23c3758b41, type: 3}
+  clean: {fileID: 21300000, guid: 8407d3be6166abd4ea4eb1a154afa1c2, type: 3}
   wetOverlay1: {fileID: 21300000, guid: 3fbbf46ca1b6c154386bcb765a5cbae7, type: 3}
   wetOverlay2: {fileID: 21300000, guid: 6bc52c514c264a64e89f037631d5b0c4, type: 3}
   wetOverlay3: {fileID: 21300000, guid: 333aea47bcb5a00489e95ac3981b2cd1, type: 3}
