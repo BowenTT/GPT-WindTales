@@ -24,7 +24,7 @@ public class Spawner : MonoBehaviour {
         if (countDown <= 0f && spawnerON && spawnedItems <= totalItems)
         {
             spawnPosition.x = Random.Range(0, maxX);
-            spawnPosition.y = Random.Range(225, maxY);
+            spawnPosition.y = Random.Range(350, maxY);
             int arrayIndex = Random.Range(0, sprites.Length);
             Sprite sprite = sprites[arrayIndex];
             //Vector3 screenPosition = Camera.main.ScreenToWorldPoint(new Vector3(Random.Range(0, Screen.width), Random.Range(0, Screen.height), 100));

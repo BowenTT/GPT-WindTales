@@ -7,7 +7,7 @@ public class Coin : MonoBehaviour {
     public float distanceStrength = 0f;
     public int vacuumDirection = 1;
     public bool loseVacuumEffect = true;
-    public float diffucltyLevel = 75f;
+    public float diffucltyLevel = 10f;
 
     public GameObject[] soundObject;
 

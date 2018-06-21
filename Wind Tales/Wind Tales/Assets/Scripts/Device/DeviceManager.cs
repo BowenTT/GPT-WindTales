@@ -50,7 +50,7 @@ public class DeviceManager : PersistentSingleton<DeviceManager>
     }
 
     public float MinFlowLMin
-    {
+    { 
         get { return minFlowLMin; }
     }
 

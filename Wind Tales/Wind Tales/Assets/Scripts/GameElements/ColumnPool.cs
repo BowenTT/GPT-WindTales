@@ -53,7 +53,7 @@ public class ColumnPool : MonoBehaviour
     {
         timeSinceLastSpawned += Time.deltaTime;
         timeSinceLastSpawnedBlockage += Time.deltaTime;
-        if (Input.GetAxis("Player_SimulateBreathing") >= BlowingMinimum || Input.GetKey("q"))
+        if (DeviceManager.Instance.MinFlowLMin >= BlowingMinimum || Input.GetKey("q"))
         {
             columns[games.score % Convert.ToInt32(columnPoolSize)].GetComponent<Column>().ExhaleBreath.SetActive(false);
             var blockage = columns[games.score %Convert.ToInt32(columnPoolSize)].GetComponent<Column>().Blockage;

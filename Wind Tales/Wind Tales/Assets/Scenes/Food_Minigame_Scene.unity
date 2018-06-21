@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c282caef19c5a244c958bdabcd99e574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breathingTimeNeeded: 3
+  breathingTimeNeeded: 0.5
   minimumBreathingStrength: 1
   Camera: {fileID: 1810872235}
   Canvas: {fileID: 213631871}
