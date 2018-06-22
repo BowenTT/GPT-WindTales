@@ -53,7 +53,10 @@ public class ColumnPool : MonoBehaviour
     {
         timeSinceLastSpawned += Time.deltaTime;
         timeSinceLastSpawnedBlockage += Time.deltaTime;
-        if (DeviceManager.Instance.MinFlowLMin >= BlowingMinimum || Input.GetKey("q"))
+        Debug.Log(DeviceManager.Instance.MinFlowLMin);
+        float input = (float)DeviceManager.Instance.FlowLMin * -1;
+        Debug.Log(input);
+        if (input >= BlowingMinimum || Input.GetKey("q"))
         {
             columns[games.score % Convert.ToInt32(columnPoolSize)].GetComponent<Column>().ExhaleBreath.SetActive(false);
             var blockage = columns[games.score %Convert.ToInt32(columnPoolSize)].GetComponent<Column>().Blockage;

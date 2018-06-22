@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/KitingScene.unity
     guid: 83c8b8b8971502f48987ced81747642a
   - enabled: 0
-    path: Assets/Scenes/Flaapbird.unity
+    path: 
     guid: 9ac1c55b57ce84298803d149f3b89d9d
   - enabled: 1
     path: Assets/Scenes/VacuumCleaner.unity
@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HomeScene.unity
     guid: ff54dcc57791741ca8b563c15f1b6248
+  - enabled: 1
+    path: Assets/Scenes/FlappyBird.unity
+    guid: 53a509e23287bf6408bbb8cef1f5b79e
   m_configObjects: {}

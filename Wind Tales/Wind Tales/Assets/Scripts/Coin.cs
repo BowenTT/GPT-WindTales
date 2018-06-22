@@ -39,8 +39,6 @@ public class Coin : MonoBehaviour {
     {
       // vacuumStrength = Input.GetAxis("Player_SimulateBreathing");// ==> for Xbox controller
        vacuumStrength = (DeviceManager.Instance.CurrentFlowPercentage / diffucltyLevel);
-        
-        Debug.Log(vacuumStrength);
     }
 
     void FixedUpdate()

@@ -705,7 +705,7 @@ MonoBehaviour:
   columnMin: 2
   columnMax: 4
   BlockingColumnSpawn: 20
-  BlowingMinimum: 0.3
+  BlowingMinimum: 10
 --- !u!4 &1244831761
 Transform:
   m_ObjectHideFlags: 0

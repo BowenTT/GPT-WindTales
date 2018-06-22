@@ -103,9 +103,9 @@ public class NPCMovement : MonoBehaviour {
         }
         Vector3 oPos = transform.position;
         if (movementTime >= 0 && (Direction > 0f || Direction < 0f))
-    {
-        transform.position = new Vector3(oPos.x + Direction, oPos.y + HopHeight, oPos.z);
-    }
+        {
+            transform.position = new Vector3(oPos.x + Direction, oPos.y + HopHeight, oPos.z);
+        }
 
 
 
